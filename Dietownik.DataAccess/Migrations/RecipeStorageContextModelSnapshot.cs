@@ -51,14 +51,48 @@ namespace Dietownik.DataAccess.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.Recipe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Recipes");
+                });
+
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
                 {
                     b.HasBaseType("Dietownik.DataAccess.Entities.Product");
 
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Weigth")
                         .HasColumnType("decimal(18,2)");
 
+                    b.HasIndex("RecipeId");
+
                     b.HasDiscriminator().HasValue("Ingredient");
+                });
+
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
+                {
+                    b.HasOne("Dietownik.DataAccess.Entities.Recipe", null)
+                        .WithMany("Ingredients")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.Recipe", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 #pragma warning restore 612, 618
         }

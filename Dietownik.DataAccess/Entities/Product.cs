@@ -1,8 +1,7 @@
 namespace Dietownik.DataAccess.Entities
 {
-    public class Product
+    public class Product : EntityBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Kcal { get; set; }
         public decimal FatsPerHundredGrams { get; set; }

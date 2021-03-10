@@ -6,7 +6,7 @@ namespace Dietownik.DataAccess
 
     public interface IRepository<T> where T : EntityBase
     {
-        IEnumerable<T> GetaLL();
+        IEnumerable<T> GetAll();
 
         T GetById(int id);
 

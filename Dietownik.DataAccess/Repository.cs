@@ -16,7 +16,7 @@ namespace Dietownik.DataAccess
             this.context = context;
             entities = context.Set<T>();
         }
-        public IEnumerable<T> GetaLL()
+        public IEnumerable<T> GetAll()
         {
             return entities.AsEnumerable();
         }

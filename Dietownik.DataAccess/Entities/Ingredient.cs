@@ -6,5 +6,6 @@ namespace Dietownik.DataAccess.Entities
     {
         [Required]
         public decimal Weigth { get; set; }
+        public int RecipeId { get; set; }
     }
 }
