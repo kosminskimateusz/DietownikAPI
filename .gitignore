@@ -1,2 +1,5 @@
-/Dietownik/bin
-/Dietownik/obj
+/Dietownik/bin/
+/Dietownik/obj/
+.vscode/
+/Dietownik.DataAccess/bin/
+/Dietownik.DataAccess/obj/
