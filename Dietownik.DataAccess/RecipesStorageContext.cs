@@ -1,7 +1,8 @@
+using Dietownik.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
+
 namespace Dietownik.DataAccess
 {
-    using Dietownik.DataAccess.Entities;
-    using Microsoft.EntityFrameworkCore;
 
     public class RecipeStorageContext : DbContext
     {

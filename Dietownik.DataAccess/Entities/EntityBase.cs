@@ -1,7 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 
 namespace Dietownik.DataAccess.Entities
 {
-    using System.ComponentModel.DataAnnotations;
 
     public abstract class EntityBase
     {
