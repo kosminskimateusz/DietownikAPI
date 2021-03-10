@@ -7,9 +7,9 @@ namespace Dietownik.DataAccess
     {
         public RecipeStorageContext(DbContextOptions<RecipeStorageContext> opt) : base(opt)
         {
-            
         }
 
+        public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<Product> Products { get; set; }
     }
 }

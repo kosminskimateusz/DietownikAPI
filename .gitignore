@@ -3,3 +3,5 @@
 .vscode/
 /Dietownik.DataAccess/bin/
 /Dietownik.DataAccess/obj/
+/Dietownik.DataAccess/Migrations/
+

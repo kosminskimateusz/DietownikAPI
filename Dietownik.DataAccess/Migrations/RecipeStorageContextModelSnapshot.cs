@@ -28,11 +28,18 @@ namespace Dietownik.DataAccess.Migrations
                     b.Property<decimal>("CarbsPerHundredGrams")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("FatsPerHundredGrams")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Kcal")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ProteinsPerHundredGrams")
                         .HasColumnType("decimal(18,2)");
@@ -40,6 +47,18 @@ namespace Dietownik.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
+                });
+
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
+                {
+                    b.HasBaseType("Dietownik.DataAccess.Entities.Product");
+
+                    b.Property<decimal>("Weigth")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasDiscriminator().HasValue("Ingredient");
                 });
 #pragma warning restore 612, 618
         }
