@@ -18,6 +18,31 @@ namespace Dietownik.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Weigth")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Ingredients");
+                });
+
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -28,10 +53,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.Property<decimal>("CarbsPerHundredGrams")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("FatsPerHundredGrams")
                         .HasColumnType("decimal(18,2)");
 
@@ -39,6 +60,7 @@ namespace Dietownik.DataAccess.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("ProteinsPerHundredGrams")
@@ -47,8 +69,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Recipe", b =>
@@ -68,26 +88,22 @@ namespace Dietownik.DataAccess.Migrations
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
                 {
-                    b.HasBaseType("Dietownik.DataAccess.Entities.Product");
+                    b.HasOne("Dietownik.DataAccess.Entities.Product", null)
+                        .WithMany("Ingredients")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Weigth")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasIndex("RecipeId");
-
-                    b.HasDiscriminator().HasValue("Ingredient");
-                });
-
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
-                {
                     b.HasOne("Dietownik.DataAccess.Entities.Recipe", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.Product", b =>
+                {
+                    b.Navigation("Ingredients");
                 });
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Recipe", b =>

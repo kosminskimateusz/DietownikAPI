@@ -11,6 +11,7 @@ namespace Dietownik.DataAccess
         }
 
         public DbSet<Ingredient> Ingredients { get; set; }
+        
         public DbSet<Product> Products { get; set; }
 
         public DbSet<Recipe> Recipes { get; set; }
