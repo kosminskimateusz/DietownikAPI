@@ -6,6 +6,7 @@ namespace Dietownik.DataAccess.Entities
     public class Product : EntityBase
     {
         [Required]
+        [MaxLength(150)]
         public string Name { get; set; }
 
         [Required]
