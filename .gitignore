@@ -1,11 +1,8 @@
+.vscode/
 /Dietownik/bin/
 /Dietownik/obj/
-.vscode/
 /Dietownik.DataAccess/bin/
 /Dietownik.DataAccess/obj/
 /Dietownik.DataAccess/Migrations/
-Dietownik.ApplicationServices/obj/Dietownik.ApplicationServices.csproj.nuget.dgspec.json
-Dietownik.ApplicationServices/obj/Dietownik.ApplicationServices.csproj.nuget.g.props
-Dietownik.ApplicationServices/obj/Dietownik.ApplicationServices.csproj.nuget.g.targets
-Dietownik.ApplicationServices/obj/project.assets.json
-Dietownik.ApplicationServices/obj/project.nuget.cache
+Dietownik.ApplicationServices/obj/
+Dietownik.ApplicationServices/bin/
