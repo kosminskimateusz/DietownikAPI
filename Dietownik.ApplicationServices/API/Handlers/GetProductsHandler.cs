@@ -1,15 +1,16 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-// using Dietownik.ApplicationServices.API.Domain;
+using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.Entities;
 using MediatR;
 
-namespace Dietownik.ApplicationServices.API.Domain.Handlers
+namespace Dietownik.ApplicationServices.API.Handlers
 {
     public class GetProductsHandler : IRequestHandler<GetProductsRequest, GetProductsResponse>
     {
-        private readonly IRepository<DataAccess.Entities.Product> productRepository;
+        private readonly IRepository<Product> productRepository;
 
         public GetProductsHandler(IRepository<Dietownik.DataAccess.Entities.Product> productRepository)
         {
@@ -17,7 +18,18 @@ namespace Dietownik.ApplicationServices.API.Domain.Handlers
         }
         public Task<GetProductsResponse> Handle(GetProductsRequest request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var products = this.productRepository.GetAll();
+            var domainProducts = products.Select(product => new Domain.Models.Product()
+            {
+                Id = product.Id,
+                Name = product.Name
+            });
+
+            var response = new GetProductsResponse()
+            {
+                Data = domainProducts.ToList()
+            };
+            return Task.FromResult(response);
         }
     }
 }
