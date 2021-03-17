@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dietownik.Controllers
@@ -9,14 +12,19 @@ namespace Dietownik.Controllers
     [Route("[controller]")]
     public class ProductController : ControllerBase
     {
-        private readonly IRepository<Product> productRepository;
-        public ProductController(IRepository<Product> productRepository)
+        private readonly IMediator mediator;
+
+        public ProductController(IMediator mediator)
         {
-            this.productRepository = productRepository;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<Product> GetAllProducts() => this.productRepository.GetAll();
+        public async Task<IActionResult> GetAllProducts([FromQuery] GetProductsRequest request)
+        {
+            var response = await this.mediator.Send(request);
+            return this.Ok(response);
+        }
     }
 }

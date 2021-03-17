@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MediatR;
+using Dietownik.ApplicationServices.API.Domain;
 
 namespace Dietownik
 {
@@ -29,7 +31,10 @@ namespace Dietownik
         public void ConfigureServices(IServiceCollection services)
         {
             // Dodane własne:
-            
+
+            // services.AddMediatR(typeof(ResponseBase<>)); // Klasy w których chcemy skorzystać z Mediatora, tu podajemy lokalizację np. przez ResponseBase
+            services.AddMediatR(typeof(ApplicationServices.API.Domain.ResponseBase<>)); // Chyba to samo co wyżej. Sprawdzić!!!
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddDbContext<RecipeStorageContext>(

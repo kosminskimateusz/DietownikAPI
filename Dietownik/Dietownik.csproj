@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dietownik.DataAccess\Dietownik.DataAccess.csproj" />
+    <ProjectReference Include="..\Dietownik.ApplicationServices\Dietownik.ApplicationServices.csproj" />
   </ItemGroup>
 
 </Project>
