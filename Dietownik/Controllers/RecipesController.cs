@@ -7,10 +7,10 @@ namespace Dietownik.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RecipeController : ControllerBase
+    public class RecipesController : ControllerBase
     {
         private readonly IRepository<Recipe> recipeRepository;
-        public RecipeController(IRepository<Recipe> recipeRepository)
+        public RecipesController(IRepository<Recipe> recipeRepository)
         {
             this.recipeRepository = recipeRepository;
         }

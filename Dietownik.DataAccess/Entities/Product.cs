@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dietownik.DataAccess.Entities
 {
@@ -10,15 +11,19 @@ namespace Dietownik.DataAccess.Entities
         public string Name { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,1")]
         public decimal Kcal { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,1")]
         public decimal FatsPerHundredGrams { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,1")]
         public decimal CarbsPerHundredGrams { get; set; }
 
         [Required]
+        [Column(TypeName = "decimal(18,1")]
         public decimal ProteinsPerHundredGrams { get; set; }
 
         public List<Ingredient> Ingredients { get; set; }
