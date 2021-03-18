@@ -15,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MediatR;
 using Dietownik.ApplicationServices.API.Domain;
+using Dietownik.ApplicationServices.Mappings;
 
 namespace Dietownik
 {
@@ -31,6 +32,8 @@ namespace Dietownik
         public void ConfigureServices(IServiceCollection services)
         {
             // Dodane własne:
+
+            services.AddAutoMapper(typeof(ProductsProfile).Assembly);
 
             // services.AddMediatR(typeof(ResponseBase<>)); // Klasy w których chcemy skorzystać z Mediatora, tu podajemy lokalizację np. przez ResponseBase
             services.AddMediatR(typeof(ApplicationServices.API.Domain.ResponseBase<>)); // Chyba to samo co wyżej. Sprawdzić!!!
