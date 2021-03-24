@@ -20,22 +20,16 @@ namespace Dietownik.ApplicationServices.API.Handlers
             this.productRepository = productRepository;
             this.mapper = mapper;
         }
-        public Task<GetProductsResponse> Handle(GetProductsRequest request, CancellationToken cancellationToken)
+        public async Task<GetProductsResponse> Handle(GetProductsRequest request, CancellationToken cancellationToken)
         {
-            var products = this.productRepository.GetAll();
+            var products = await this.productRepository.GetAll();
             var mappedProducts = this.mapper.Map<List<Domain.Models.Product>>(products);
-
-            // var domainProducts = products.Select(product => new Domain.Models.Product()
-            // {
-            //     Id = product.Id,
-            //     Name = product.Name
-            // });
 
             var response = new GetProductsResponse()
             {
                 Data = mappedProducts
             };
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

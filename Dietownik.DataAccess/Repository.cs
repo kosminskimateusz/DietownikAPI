@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Dietownik.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,37 +17,38 @@ namespace Dietownik.DataAccess
             this.context = context;
             entities = context.Set<T>();
         }
-        public IEnumerable<T> GetAll()
+        public Task<List<T>> GetAll()
         {
-            return entities.AsEnumerable();
+            return entities.ToListAsync();
         }
 
-        public T GetById(int id)
+        public Task<T> GetById(int id)
         {
-            return entities.SingleOrDefault(entity => entity.Id == id);
+            return entities.SingleOrDefaultAsync(entity => entity.Id == id);
         }
 
-        public void Insert(T entity)
+        public Task Insert(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException("entity");
             entities.Add(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
 
-        public void Update(T entity)
+        public Task Update(T entity)
         {
             if (entity == null)
                 throw new ArgumentException("entity");
 
-            context.SaveChanges();
+            entities.Update(entity);
+            return context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public Task Delete(int id)
         {
             T entity = entities.SingleOrDefault(entity => entity.Id == id);
             entities.Remove(entity);
-            context.SaveChanges();
+            return context.SaveChangesAsync();
         }
     }
 }
