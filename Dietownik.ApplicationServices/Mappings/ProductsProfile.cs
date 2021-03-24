@@ -9,7 +9,8 @@ namespace Dietownik.ApplicationServices.Mappings
         {
             this.CreateMap<DataAccess.Entities.Product, Product>()
             .ForMember(model => model.Id, option => option.MapFrom(entity => entity.Id))
-            .ForMember(model => model.Name, option => option.MapFrom(entity => entity.Name));
+            .ForMember(model => model.Name, option => option.MapFrom(entity => entity.Name))
+            .ForMember(model => model.Kcal, option => option.MapFrom(entity => entity.Kcal));
         }
     }
 }
