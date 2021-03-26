@@ -5,24 +5,26 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.DataAccess;
-using Dietownik.DataAccess.Entities;
+using Dietownik.DataAccess.CQRS.Queries;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers
 {
     public class GetRecipesHandler : IRequestHandler<GetRecipesRequest, GetRecipesResponse>
     {
-        private readonly IRepository<Recipe> recipeRepository;
         private readonly IMapper mapper;
+        private readonly IQueryExecutor queryExecutor;
 
-        public GetRecipesHandler(IRepository<Recipe> recipeRepository, IMapper mapper)
+        public GetRecipesHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            this.recipeRepository = recipeRepository;
             this.mapper = mapper;
+            this.queryExecutor = queryExecutor;
         }
         public async Task<GetRecipesResponse> Handle(GetRecipesRequest request, CancellationToken cancellationToken)
         {
-            var recipes = await this.recipeRepository.GetAll();
+            var query = new GetRecipesQuery();
+
+            var recipes = await queryExecutor.Execute(query);
             var mappedRecipes = this.mapper.Map<List<Domain.Models.Recipe>>(recipes);
 
             var response = new GetRecipesResponse()

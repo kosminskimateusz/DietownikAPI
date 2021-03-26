@@ -33,6 +33,8 @@ namespace Dietownik
         {
             // Dodane własne:
 
+            services.AddTransient<IQueryExecutor, QueryExecutor>();
+
             services.AddAutoMapper(typeof(ProductsProfile).Assembly);
 
             // services.AddMediatR(typeof(ResponseBase<>)); // Klasy w których chcemy skorzystać z Mediatora, tu podajemy lokalizację np. przez ResponseBase

@@ -5,30 +5,33 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.DataAccess;
-using Dietownik.DataAccess.Entities;
+using Dietownik.DataAccess.CQRS.Queries;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers
 {
     public class GetProductsHandler : IRequestHandler<GetProductsRequest, GetProductsResponse>
     {
-        private readonly IRepository<Product> productRepository;
         private readonly IMapper mapper;
+        private readonly IQueryExecutor queryExecutor;
 
-        public GetProductsHandler(IRepository<Dietownik.DataAccess.Entities.Product> productRepository, IMapper mapper)
+        public GetProductsHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
-            this.productRepository = productRepository;
             this.mapper = mapper;
+            this.queryExecutor = queryExecutor;
         }
         public async Task<GetProductsResponse> Handle(GetProductsRequest request, CancellationToken cancellationToken)
         {
-            var products = await this.productRepository.GetAll();
+            var query = new GetProductsQuery();
+
+            var products = await this.queryExecutor.Execute(query);
             var mappedProducts = this.mapper.Map<List<Domain.Models.Product>>(products);
 
             var response = new GetProductsResponse()
             {
                 Data = mappedProducts
             };
+            
             return response;
         }
     }
