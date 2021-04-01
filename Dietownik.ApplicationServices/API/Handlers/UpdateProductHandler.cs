@@ -21,7 +21,7 @@ namespace Dietownik.ApplicationServices.API.Handlers
             this.queryExecutor = queryExecutor;
         }
 
-        public Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
             var query = new GetProductByIdQuery()
             {
@@ -29,7 +29,7 @@ namespace Dietownik.ApplicationServices.API.Handlers
             };
             var product = await this.queryExecutor.Execute(query);
             var mappedProduct = this.mapper.Map<Domain.Models.Product>(product);
-            var response = new GetProductByIdResponse()
+            var response = new UpdateProductResponse()
             {
                 Data = mappedProduct
             };
