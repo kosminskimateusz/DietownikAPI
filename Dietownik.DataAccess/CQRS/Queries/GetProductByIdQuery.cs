@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dietownik.DataAccess.CQRS.Queries
 {
-    public class GetProductQuery : QueryBase<Product>
+    public class GetProductByIdQuery : QueryBase<Product>
     {
         public int Id { get; set; }
         public async override Task<Product> Execute(RecipeStorageContext context)

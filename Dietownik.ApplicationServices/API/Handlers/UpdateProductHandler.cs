@@ -10,18 +10,18 @@ using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers
 {
-    public class GetProductByIdHandler : IRequestHandler<GetProductByIdRequest, GetProductByIdResponse>
+    public class UpdateProductHandler : IRequestHandler<UpdateProductRequest, UpdateProductResponse>
     {
         private readonly IMapper mapper;
         private readonly IQueryExecutor queryExecutor;
 
-        public GetProductByIdHandler(IMapper mapper, IQueryExecutor queryExecutor)
+        public UpdateProductHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
             this.mapper = mapper;
             this.queryExecutor = queryExecutor;
         }
 
-        public async Task<GetProductByIdResponse> Handle(GetProductByIdRequest request, CancellationToken cancellationToken)
+        public Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
             var query = new GetProductByIdQuery()
             {
