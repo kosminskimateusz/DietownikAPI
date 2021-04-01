@@ -19,6 +19,9 @@ namespace Dietownik.ApplicationServices.Mappings
             .ForMember(entity => entity.FatsPerHundredGrams, option => option.MapFrom(request => request.FatsPerHundredGramms))
             .ForMember(entity => entity.CarbsPerHundredGrams, option => option.MapFrom(request => request.CarbsPerHundredGrams))
             .ForMember(entity => entity.ProteinsPerHundredGrams, option => option.MapFrom(request => request.ProteinsPerHundredGrams));
+
+            this.CreateMap<DeleteProductRequest, DataAccess.Entities.Product>()
+            .ForMember(entity => entity.Id, option => option.MapFrom(request => request.ProductId));
         }
     }
 }

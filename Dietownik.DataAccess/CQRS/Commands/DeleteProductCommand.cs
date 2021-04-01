@@ -7,8 +7,7 @@ namespace Dietownik.DataAccess.CQRS.Commands
     {
         public override async Task<Product> Execute(RecipeStorageContext context)
         {
-            var product = new Product { Id = this.Parameter.Id};
-            await context.Products.Remove(product);
+            context.Products.Remove(this.Parameter);
             await context.SaveChangesAsync();
             return this.Parameter;
         }
