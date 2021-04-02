@@ -61,12 +61,13 @@ namespace Dietownik.Controllers
 
         [HttpPut]
         [Route("{productId}")]
-        public async Task<IActionResult> UpdateProduct([FromRoute] int productId, [FromBody] UpdateProductRequest request)
+        public async Task<IActionResult> UpdateProduct(int productId, [FromBody] UpdateProductRequest request)
         {
-            var product = new UpdateProductRequest()
-            {
-                ProductId = productId
-            };
+            // var product = new UpdateProductRequest()
+            // {
+            //     ProductId = productId
+            // };
+            request.productId = productId;
             var response = await this.mediator.Send(request);
             return this.Ok(response);
         }

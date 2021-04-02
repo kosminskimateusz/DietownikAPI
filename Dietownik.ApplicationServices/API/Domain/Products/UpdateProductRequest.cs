@@ -4,7 +4,7 @@ namespace Dietownik.ApplicationServices.API.Domain
 {
     public class UpdateProductRequest : IRequest<UpdateProductResponse>
     {
-        public int ProductId { get; set; }
+        public int productId;
         public string Name { get; set; }
         public decimal Kcal { get; set; }
         public decimal FatsPerHundredGramms { get; set; }

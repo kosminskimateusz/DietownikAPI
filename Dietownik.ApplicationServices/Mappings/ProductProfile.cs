@@ -24,7 +24,7 @@ namespace Dietownik.ApplicationServices.Mappings
             .ForMember(entity => entity.Id, option => option.MapFrom(request => request.ProductId));
 
             this.CreateMap<UpdateProductRequest, DataAccess.Entities.Product>()
-            .ForMember(entity => entity.Id, option => option.MapFrom(request => request.ProductId))
+            .ForMember(entity => entity.Id, option => option.MapFrom(request => request.productId))
             .ForMember(entity => entity.Name, option => option.MapFrom(request => request.Name))
             .ForMember(entity => entity.Kcal, option => option.MapFrom(request => request.Kcal))
             .ForMember(entity => entity.FatsPerHundredGrams, option => option.MapFrom(request => request.FatsPerHundredGramms))
