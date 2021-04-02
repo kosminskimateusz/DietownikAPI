@@ -22,7 +22,10 @@ namespace Dietownik.ApplicationServices.API.Handlers
         }
         public async Task<GetProductsResponse> Handle(GetProductsRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetProductsQuery();
+            var query = new GetProductsQuery()
+            {
+                Name = request.ContainsInName
+            };
 
             var products = await this.queryExecutor.Execute(query);
             var mappedProducts = this.mapper.Map<List<Domain.Models.Product>>(products);
