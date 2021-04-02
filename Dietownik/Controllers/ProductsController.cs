@@ -63,7 +63,7 @@ namespace Dietownik.Controllers
         [Route("{productId}")]
         public async Task<IActionResult> UpdateProduct([FromRoute] int productId, [FromBody] UpdateProductRequest request)
         {
-            var product = new GetProductByIdRequest()
+            var product = new UpdateProductRequest()
             {
                 ProductId = productId
             };

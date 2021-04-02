@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.DataAccess;
+using Dietownik.DataAccess.CQRS;
+using Dietownik.DataAccess.CQRS.Commands;
 using Dietownik.DataAccess.CQRS.Queries;
 using MediatR;
 
@@ -13,25 +15,30 @@ namespace Dietownik.ApplicationServices.API.Handlers
     public class UpdateProductHandler : IRequestHandler<UpdateProductRequest, UpdateProductResponse>
     {
         private readonly IMapper mapper;
-        private readonly IQueryExecutor queryExecutor;
+        private readonly ICommandExecutor commandExecutor;
 
-        public UpdateProductHandler(IMapper mapper, IQueryExecutor queryExecutor)
+        public UpdateProductHandler(IMapper mapper, ICommandExecutor commandExecutor)
         {
             this.mapper = mapper;
-            this.queryExecutor = queryExecutor;
+            this.commandExecutor = commandExecutor;
         }
 
         public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetProductByIdQuery()
+            // var query = new GetProductByIdQuery()
+            // {
+            //     Id = request.ProductId
+            // };
+            // var product = await this.queryExecutor.Execute(query);
+            var updatedProduct = this.mapper.Map<DataAccess.Entities.Product>(request);
+            var command = new UpdateProductCommand()
             {
-                Id = request.ProductId
+                Parameter = updatedProduct
             };
-            var product = await this.queryExecutor.Execute(query);
-            var mappedProduct = this.mapper.Map<Domain.Models.Product>(product);
+            var updateDb = await this.commandExecutor.Execute(command);
             var response = new UpdateProductResponse()
             {
-                Data = mappedProduct
+                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Product>(updatedProduct)
             };
             return response;
         }
