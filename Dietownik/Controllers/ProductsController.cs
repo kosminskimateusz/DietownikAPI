@@ -43,6 +43,11 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest("Bad request");
+            }
+            
             var response = await this.mediator.Send(request);
             return this.Ok(response);
         }

@@ -17,6 +17,8 @@ using MediatR;
 using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.ApplicationServices.Mappings;
 using Dietownik.DataAccess.CQRS;
+using FluentValidation.AspNetCore;
+using Dietownik.ApplicationServices.API.Validators;
 
 namespace Dietownik
 {
@@ -33,6 +35,15 @@ namespace Dietownik
         public void ConfigureServices(IServiceCollection services)
         {
             // Dodane własne:
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+            
+
+            services.AddMvcCore()
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddProductRequestValidator>());
 
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
