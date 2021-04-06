@@ -10,21 +10,19 @@ namespace Dietownik.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : ApiControllerBase
     {
-        private readonly IMediator mediator;
-
-        public ProductsController(IMediator mediator)
+        public ProductsController(IMediator mediator) : base(mediator)
         {
-            this.mediator = mediator;
         }
 
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetAllProducts([FromQuery] GetProductsRequest request)
         {
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            // var response = await this.mediator.Send(request);
+            // return this.Ok(response);
+            return await this.HandleRequest<GetProductsRequest, GetProductsResponse>(request);
         }
 
         [HttpGet]
@@ -35,21 +33,23 @@ namespace Dietownik.Controllers
             {
                 ProductId = productId
             };
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            // var response = await this.mediator.Send(request);
+            // return this.Ok(response);
+            return await this.HandleRequest<GetProductByIdRequest, GetProductByIdResponse>(request);
         }
 
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.BadRequest("Bad request");
-            }
-            
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            // if (!this.ModelState.IsValid)
+            // {
+            //     return this.BadRequest("Bad request");
+            // }
+
+            // var response = await this.mediator.Send(request);
+            // return this.Ok(response);
+            return await this.HandleRequest<AddProductRequest, AddProductResponse>(request);
         }
 
         [HttpDelete]
@@ -60,8 +60,9 @@ namespace Dietownik.Controllers
             {
                 ProductId = productId
             };
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            // var response = await this.mediator.Send(request);
+            // return this.Ok(response);
+            return await this.HandleRequest<DeleteProductRequest, DeleteProductResponse>(request);
         }
 
         [HttpPut]
@@ -73,8 +74,9 @@ namespace Dietownik.Controllers
             //     ProductId = productId
             // };
             request.productId = productId;
-            var response = await this.mediator.Send(request);
-            return this.Ok(response);
+            // var response = await this.mediator.Send(request);
+            // return this.Ok(response);
+            return await this.HandleRequest<UpdateProductRequest, UpdateProductResponse>(request);
         }
     }
 }
