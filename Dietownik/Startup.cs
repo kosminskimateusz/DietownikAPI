@@ -53,7 +53,6 @@ namespace Dietownik
             // services.AddMediatR(typeof(ResponseBase<>)); // Klasy w których chcemy skorzystać z Mediatora, tu podajemy lokalizację np. przez ResponseBase
             services.AddMediatR(typeof(ApplicationServices.API.Domain.ResponseBase<>)); // Chyba to samo co wyżej. Sprawdzić!!!
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddDbContext<RecipeStorageContext>(
                 opt => opt.UseSqlServer(this.Configuration.GetConnectionString("RecipeDatabaseConnection"))

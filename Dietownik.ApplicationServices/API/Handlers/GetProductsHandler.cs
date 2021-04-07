@@ -24,7 +24,7 @@ namespace Dietownik.ApplicationServices.API.Handlers
         {
             var query = new GetProductsQuery()
             {
-                Name = request.ContainsInName
+                SearchPhrase = request.SearchPhrase
             };
 
             var products = await this.queryExecutor.Execute(query);

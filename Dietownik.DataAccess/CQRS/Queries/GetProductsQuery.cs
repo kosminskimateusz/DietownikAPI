@@ -8,14 +8,14 @@ namespace Dietownik.DataAccess.CQRS.Queries
 {
     public class GetProductsQuery : QueryBase<List<Product>>
     {
-        public string Name { get; set; }
+        public string SearchPhrase { get; set; }
         public override Task<List<Product>> Execute(RecipeStorageContext context)
         {
-            if(this.Name == null)
+            if(this.SearchPhrase == null)
             {
                 return context.Products.ToListAsync();
             }
-            return context.Products.Where(product => product.Name.Contains(this.Name)).ToListAsync();
+            return context.Products.Where(product => product.Name.Contains(this.SearchPhrase)).ToListAsync();
         }
     }
 }
