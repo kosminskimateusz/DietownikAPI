@@ -10,7 +10,7 @@ using Dietownik.DataAccess.CQRS.Commands;
 using Dietownik.DataAccess.CQRS.Queries;
 using MediatR;
 
-namespace Dietownik.ApplicationServices.API.Handlers
+namespace Dietownik.ApplicationServices.API.Handlers.Products
 {
     public class UpdateProductHandler : IRequestHandler<UpdateProductRequest, UpdateProductResponse>
     {

@@ -5,6 +5,5 @@ namespace Dietownik.ApplicationServices.API.Domain
 {
     public class GetRecipesResponse : ResponseBase<List<Recipe>>
     {
-        
     }
 }

@@ -8,7 +8,7 @@ using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries;
 using MediatR;
 
-namespace Dietownik.ApplicationServices.API.Handlers
+namespace Dietownik.ApplicationServices.API.Handlers.Recipes
 {
     public class GetRecipesHandler : IRequestHandler<GetRecipesRequest, GetRecipesResponse>
     {

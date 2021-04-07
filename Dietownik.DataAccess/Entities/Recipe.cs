@@ -8,7 +8,6 @@ namespace Dietownik.DataAccess.Entities
         [Required]
         [MaxLength(250)]
         public string Name {get;set;}
-        [Required]
         public List<Ingredient> Ingredients {get;set;}
         
     }
