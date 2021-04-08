@@ -1,5 +1,5 @@
 using AutoMapper;
-using Dietownik.ApplicationServices.API.Domain;
+using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.ApplicationServices.API.Domain.Models;
 
 namespace Dietownik.ApplicationServices.Mappings

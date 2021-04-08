@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.Entities;

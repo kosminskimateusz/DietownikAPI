@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Dietownik.ApplicationServices.API.Domain;
+using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries;
 using MediatR;

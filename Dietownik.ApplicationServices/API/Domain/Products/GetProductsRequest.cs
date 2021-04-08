@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Dietownik.ApplicationServices.API.Domain
+namespace Dietownik.ApplicationServices.API.Domain.Products
 {
     public class GetProductsRequest : IRequest<GetProductsResponse>
     {

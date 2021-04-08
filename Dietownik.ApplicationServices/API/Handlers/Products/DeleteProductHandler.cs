@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using Dietownik.ApplicationServices.API.Domain;
+using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands;
 using Dietownik.DataAccess.Entities;

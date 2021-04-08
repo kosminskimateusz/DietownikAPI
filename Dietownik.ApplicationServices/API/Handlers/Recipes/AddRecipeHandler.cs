@@ -1,8 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess.CQRS;
+using Dietownik.DataAccess.CQRS.Commands;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Recipes
@@ -17,9 +19,15 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             this.mapper = mapper;
             this.commandExecutor = commandExecutor;
         }
-        public Task<AddRecipeResponse> Handle(AddRecipeRequest request, CancellationToken cancellationToken)
+        public async Task<AddRecipeResponse> Handle(AddRecipeRequest request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            var recipe = this.mapper.Map<DataAccess.Entities.Recipe>(request);
+            var command = new AddRecipeCommand() { Parameter = recipe };
+            var productFromDb = await this.commandExecutor.Execute(command);
+            return new AddRecipeResponse()
+            {
+                Data = mapper.Map<Recipe>(productFromDb)
+            };
         }
     }
 }

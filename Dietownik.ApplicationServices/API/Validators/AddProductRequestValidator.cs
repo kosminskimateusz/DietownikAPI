@@ -1,4 +1,4 @@
-using Dietownik.ApplicationServices.API.Domain;
+using Dietownik.ApplicationServices.API.Domain.Products;
 using FluentValidation;
 
 namespace Dietownik.ApplicationServices.API.Validators
