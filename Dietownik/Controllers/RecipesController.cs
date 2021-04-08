@@ -23,6 +23,17 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<GetRecipesRequest, GetRecipesResponse>(request);
         }
 
+        [HttpGet]
+        [Route("{recipeId}")]
+        public async Task<IActionResult> GetRecipeById([FromRoute] int recipeId)
+        {
+            var request = new GetRecipeByIdRequest()
+            {
+                RecipeId = recipeId
+            };
+            return await this.HandleRequest<GetRecipeByIdRequest, GetRecipeByIdResponse>(request);
+        }
+
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddRecipe([FromBody] AddRecipeRequest request)
