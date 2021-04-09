@@ -52,19 +52,6 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<AddProductRequest, AddProductResponse>(request);
         }
 
-        [HttpDelete]
-        [Route("{productId}")]
-        public async Task<IActionResult> DeleteProduct([FromRoute] int productId)
-        {
-            var request = new DeleteProductRequest()
-            {
-                ProductId = productId
-            };
-            // var response = await this.mediator.Send(request);
-            // return this.Ok(response);
-            return await this.HandleRequest<DeleteProductRequest, DeleteProductResponse>(request);
-        }
-
         [HttpPut]
         [Route("{productId}")]
         public async Task<IActionResult> UpdateProduct(int productId, [FromBody] UpdateProductRequest request)
@@ -77,6 +64,19 @@ namespace Dietownik.Controllers
             // var response = await this.mediator.Send(request);
             // return this.Ok(response);
             return await this.HandleRequest<UpdateProductRequest, UpdateProductResponse>(request);
+        }
+
+        [HttpDelete]
+        [Route("{productId}")]
+        public async Task<IActionResult> DeleteProduct([FromRoute] int productId)
+        {
+            var request = new DeleteProductRequest()
+            {
+                ProductId = productId
+            };
+            // var response = await this.mediator.Send(request);
+            // return this.Ok(response);
+            return await this.HandleRequest<DeleteProductRequest, DeleteProductResponse>(request);
         }
     }
 }
