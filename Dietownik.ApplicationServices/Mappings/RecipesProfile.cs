@@ -15,6 +15,9 @@ namespace Dietownik.ApplicationServices.Mappings
 
             this.CreateMap<AddRecipeRequest, DataAccess.Entities.Recipe>()
             .ForMember(entity => entity.Name, option => option.MapFrom(request => request.Name));
+
+            this.CreateMap<DeleteRecipeRequest, DataAccess.Entities.Recipe>()
+            .ForMember(entity => entity.Id, option => option.MapFrom(request => request.RecipeId));
         }
     }
 }
