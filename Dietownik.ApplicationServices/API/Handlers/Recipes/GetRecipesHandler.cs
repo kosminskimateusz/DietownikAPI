@@ -29,11 +29,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             var productsQuery = new GetProductsQuery();
             var products = await queryExecutor.Execute(productsQuery);
 
-            List<ApplicationServices.API.Domain.Models.Ingredient> ingredientsModel = new List<Domain.Models.Ingredient>();
+            // Wyciągnięcie modelu Recipe do wyświetlenia przy pomocy foreach
+
             List<ApplicationServices.API.Domain.Models.Recipe> recipesModel = new List<Domain.Models.Recipe>();
 
             foreach (var recipe in recipes)
             {
+                List<ApplicationServices.API.Domain.Models.Ingredient> ingredientsModel = new List<Domain.Models.Ingredient>();
                 foreach (var ingredient in recipe.Ingredients)
                 {
                     foreach (var product in products)
@@ -59,6 +61,8 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
                 };
                 recipesModel.Add(mappedRecipe);
             }
+
+            // Koniec
 
             var response = new GetRecipesResponse()
             {
