@@ -9,7 +9,9 @@ namespace Dietownik.DataAccess.CQRS.Queries
     {
         public override Task<List<Recipe>> Execute(RecipeStorageContext context)
         {
-            return context.Recipes.ToListAsync();
+            return context.Recipes
+            .Include(x => x.Ingredients)
+            .ToListAsync();
         }
     }
 }
