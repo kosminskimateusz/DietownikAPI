@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using Dietownik.DataAccess.Entities;
 
-namespace Dietownik.DataAccess.CQRS.Commands
+namespace Dietownik.DataAccess.CQRS.Commands.Products
 {
-    public class DeleteProductCommand : CommandBase<Product, Product>
+    public class UpdateProductCommand : CommandBase<Product, Product>
     {
         public override async Task<Product> Execute(RecipeStorageContext context)
         {
-            context.Products.Remove(this.Parameter);
+            context.Products.Update(this.Parameter);
             await context.SaveChangesAsync();
             return this.Parameter;
         }

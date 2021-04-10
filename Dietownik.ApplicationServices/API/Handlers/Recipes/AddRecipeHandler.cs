@@ -4,7 +4,7 @@ using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess.CQRS;
-using Dietownik.DataAccess.CQRS.Commands;
+using Dietownik.DataAccess.CQRS.Commands.Recipes;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Recipes

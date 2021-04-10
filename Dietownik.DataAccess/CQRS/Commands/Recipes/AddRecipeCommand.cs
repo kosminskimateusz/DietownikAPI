@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Dietownik.DataAccess.Entities;
 
-namespace Dietownik.DataAccess.CQRS.Commands
+namespace Dietownik.DataAccess.CQRS.Commands.Recipes
 {
     public class AddRecipeCommand : CommandBase<Recipe, Recipe>
     {

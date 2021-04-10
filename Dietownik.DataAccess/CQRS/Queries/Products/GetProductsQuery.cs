@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Dietownik.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dietownik.DataAccess.CQRS.Queries
+namespace Dietownik.DataAccess.CQRS.Queries.Products
 {
     public class GetProductsQuery : QueryBase<List<Product>>
     {

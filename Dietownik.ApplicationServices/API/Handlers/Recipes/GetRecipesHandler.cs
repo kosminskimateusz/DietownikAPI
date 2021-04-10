@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess;
-using Dietownik.DataAccess.CQRS.Queries;
+using Dietownik.DataAccess.CQRS.Queries.Products;
+using Dietownik.DataAccess.CQRS.Queries.Recipes;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Recipes

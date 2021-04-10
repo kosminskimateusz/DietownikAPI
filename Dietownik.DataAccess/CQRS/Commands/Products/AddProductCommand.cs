@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Dietownik.DataAccess.Entities;
 
-namespace Dietownik.DataAccess.CQRS.Commands
+namespace Dietownik.DataAccess.CQRS.Commands.Products
 {
     public class AddProductCommand : CommandBase<Product, Product>
     {

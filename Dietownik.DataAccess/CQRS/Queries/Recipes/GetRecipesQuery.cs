@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Dietownik.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dietownik.DataAccess.CQRS.Queries
+namespace Dietownik.DataAccess.CQRS.Queries.Recipes
 {
     public class GetRecipesQuery : QueryBase<List<Recipe>>
     {
