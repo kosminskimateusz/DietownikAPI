@@ -76,7 +76,7 @@ namespace Dietownik.Controllers
             };
             // var response = await this.mediator.Send(request);
             // return this.Ok(response);
-            return await this.HandleRequest<DeleteProductRequest, DeleteProductResponse>(request);
+            return await this.HandleRequestWithoutResponse<DeleteProductRequest, DeleteProductResponse>(request);
         }
     }
 }
