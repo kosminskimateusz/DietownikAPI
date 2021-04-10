@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess;
-using Dietownik.DataAccess.CQRS.Queries;
+using Dietownik.DataAccess.CQRS.Queries.Products;
+using Dietownik.DataAccess.CQRS.Queries.Recipes;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Recipes
@@ -22,14 +23,50 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
         }
         public async Task<GetRecipesResponse> Handle(GetRecipesRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetRecipesQuery();
+            var recipesQuery = new GetRecipesQuery();
+            var recipes = await queryExecutor.Execute(recipesQuery);
 
-            var recipes = await queryExecutor.Execute(query);
-            var mappedRecipes = this.mapper.Map<List<Domain.Models.Recipe>>(recipes);
+            var productsQuery = new GetProductsQuery();
+            var products = await queryExecutor.Execute(productsQuery);
+
+            // Wyciągnięcie modelu Recipe do wyświetlenia przy pomocy foreach
+
+            List<ApplicationServices.API.Domain.Models.Recipe> recipesModel = new List<Domain.Models.Recipe>();
+
+            foreach (var recipe in recipes)
+            {
+                List<ApplicationServices.API.Domain.Models.Ingredient> ingredientsModel = new List<Domain.Models.Ingredient>();
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    foreach (var product in products)
+                    {
+                        if (ingredient.ProductId == product.Id)
+                        {
+                            var fullIngredientModel = new ApplicationServices.API.Domain.Models.Ingredient()
+                            {
+                                Id = ingredient.Id,
+                                Weigth = ingredient.Weigth,
+                                Name = product.Name,
+                                Kcal = product.Kcal * ingredient.Weigth / 100
+                            };
+                            ingredientsModel.Add(fullIngredientModel);
+                        }
+                    }
+                }
+                var mappedRecipe = new ApplicationServices.API.Domain.Models.Recipe()
+                {
+                    Id = recipe.Id,
+                    Name = recipe.Name,
+                    Ingredients = ingredientsModel
+                };
+                recipesModel.Add(mappedRecipe);
+            }
+
+            // Koniec
 
             var response = new GetRecipesResponse()
             {
-                Data = mappedRecipes
+                Data = recipesModel
             };
 
             return response;

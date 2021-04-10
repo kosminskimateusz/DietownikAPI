@@ -38,7 +38,7 @@ namespace Dietownik.Controllers
             return this.Ok(response);
         }
 
-        protected async Task<IActionResult> HandleRequestWithoutResponse<TRequest, TResponse>(TRequest request)
+        protected async Task<IActionResult> HandleRequestWithoutResponseBody<TRequest, TResponse>(TRequest request)
         where TRequest : IRequest<TResponse>
         where TResponse : ErrorResponseBase
         {

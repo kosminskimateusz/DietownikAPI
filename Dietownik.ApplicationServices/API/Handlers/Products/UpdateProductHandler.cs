@@ -6,8 +6,8 @@ using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
-using Dietownik.DataAccess.CQRS.Commands;
-using Dietownik.DataAccess.CQRS.Queries;
+using Dietownik.DataAccess.CQRS.Commands.Products;
+using Dietownik.DataAccess.CQRS.Queries.Products;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Products
