@@ -40,13 +40,14 @@ namespace Dietownik
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
-            
+
 
             services.AddMvcCore()
             .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddProductRequestValidator>());
 
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
+            services.AddTransient<IFullRecipeMap, FullRecipeMap>(); // Mój wymysł na potrzeby ładnego przedstawienia przepisu ze składnikami.
 
             services.AddAutoMapper(typeof(ProductProfile).Assembly);
 

@@ -10,7 +10,7 @@ namespace Dietownik.DataAccess.CQRS.Queries.Recipes
         public int Id { get; set; }
         public async override Task<Recipe> Execute(RecipeStorageContext context)
         {
-            var recipe = await context.Recipes.FirstOrDefaultAsync(recipe => recipe.Id == this.Id);
+            var recipe = await context.Recipes.Include(x => x.Ingredients).FirstOrDefaultAsync(recipe => recipe.Id == this.Id);
             return recipe;
         }
     }
