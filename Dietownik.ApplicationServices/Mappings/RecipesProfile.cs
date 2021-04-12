@@ -18,6 +18,13 @@ namespace Dietownik.ApplicationServices.Mappings
 
             this.CreateMap<DeleteRecipeRequest, DataAccess.Entities.Recipe>()
             .ForMember(entity => entity.Id, option => option.MapFrom(request => request.RecipeId));
+
+            this.CreateMap<UpdateRecipeRequest, DataAccess.Entities.Recipe>()
+            .ForMember(entity => entity.Id, option => option.MapFrom(request => request.recipeId))
+            .ForMember(entity => entity.Name, option => option.MapFrom(request => request.Name))
+            .ForMember(entity => entity.Ingredients, option => option.MapFrom(request => request.Ingredients));
+
+            // Create class to present Recipe response with all ingredients
         }
     }
 }

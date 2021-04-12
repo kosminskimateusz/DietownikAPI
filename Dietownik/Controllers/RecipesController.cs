@@ -49,6 +49,14 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<AddRecipeIngredientRequest, AddRecipeIngredientResponse>(request);
         }
 
+        [HttpPut]
+        [Route("{recipeId}")]
+        public async Task<IActionResult> UpdateRecipe([FromRoute] int recipeId, [FromBody] UpdateRecipeRequest request)
+        {
+            request.recipeId = recipeId;
+            return await this.HandleRequest<UpdateRecipeRequest, UpdateRecipeResponse>(request);
+        }
+
         [HttpDelete]
         [Route("{recipeId}")]
         public async Task<IActionResult> DeleteRecipe([FromRoute] int recipeId)
