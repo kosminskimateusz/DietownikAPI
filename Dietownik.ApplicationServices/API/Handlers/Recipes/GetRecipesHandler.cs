@@ -26,7 +26,10 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
         }
         public async Task<GetRecipesResponse> Handle(GetRecipesRequest request, CancellationToken cancellationToken)
         {
-            var recipesQuery = new GetRecipesQuery();
+            var recipesQuery = new GetRecipesQuery()
+            {
+                SearchPhrase = request.SearchPhrase
+            };
             var recipes = await queryExecutor.Execute(recipesQuery);
 
             // Wyciągnięcie modelu Recipe do wyświetlenia przy pomocy foreach

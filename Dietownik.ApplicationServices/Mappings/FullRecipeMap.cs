@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.DataAccess;
@@ -22,9 +23,31 @@ namespace Dietownik.ApplicationServices.Mappings
 
             List<API.Domain.Models.Ingredient> ingredientsModel = new List<API.Domain.Models.Ingredient>();
 
-            foreach (var ingredient in recipe.Ingredients)
+
+            // Trying with LINQ
+            // var ingredientsProductId = recipe.Ingredients.Select(ing => ing.ProductId);
+            // var productsEqualsIngredients = products.Where(prod => ingredientsProductId.Contains(prod.Id));
+            // foreach (var ingredient in recipe.Ingredients)
+            // {
+            //     foreach (var product in productsEqualsIngredients)
+            //     {
+            //         var fullIngredientModel = new API.Domain.Models.Ingredient()
+            //         {
+            //             Id = ingredient.Id,
+            //             Weigth = ingredient.Weigth,
+            //             Name = product.Name,
+            //             Kcal = product.Kcal * ingredient.Weigth / 100
+            //         };
+            //         ingredientsModel.Add(fullIngredientModel);
+            //     }
+            // }
+
+            var productsEnum = products.Select(product => product);
+            var ingredientsEnum = recipe.Ingredients.Select(ingredient => ingredient);
+
+            foreach (var ingredient in ingredientsEnum)
             {
-                foreach (var product in products)
+                foreach (var product in productsEnum)
                 {
                     if (ingredient.ProductId == product.Id)
                     {

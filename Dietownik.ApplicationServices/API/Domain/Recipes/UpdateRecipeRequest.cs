@@ -8,7 +8,5 @@ namespace Dietownik.ApplicationServices.API.Domain.Recipes
     {
         public int recipeId;
         public string Name { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
-
     }
 }
