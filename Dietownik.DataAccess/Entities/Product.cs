@@ -16,15 +16,15 @@ namespace Dietownik.DataAccess.Entities
 
         [Required]
         [Column(TypeName = "decimal(18,1")]
-        public decimal FatsPerHundredGrams { get; set; }
+        public decimal Fats { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,1")]
-        public decimal CarbsPerHundredGrams { get; set; }
+        public decimal Carbs { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,1")]
-        public decimal ProteinsPerHundredGrams { get; set; }
+        public decimal Proteins { get; set; }
 
         public List<Ingredient> Ingredients { get; set; }
 

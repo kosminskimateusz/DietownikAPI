@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain.Products;
-using Dietownik.DataAccess;
-using Dietownik.DataAccess.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,8 +17,6 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllProducts([FromQuery] GetProductsRequest request)
         {
-            // var response = await this.mediator.Send(request);
-            // return this.Ok(response);
             return await this.HandleRequest<GetProductsRequest, GetProductsResponse>(request);
         }
 
@@ -33,8 +28,6 @@ namespace Dietownik.Controllers
             {
                 ProductId = productId
             };
-            // var response = await this.mediator.Send(request);
-            // return this.Ok(response);
             return await this.HandleRequest<GetProductByIdRequest, GetProductByIdResponse>(request);
         }
 
@@ -42,13 +35,6 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
-            // if (!this.ModelState.IsValid)
-            // {
-            //     return this.BadRequest("Bad request");
-            // }
-
-            // var response = await this.mediator.Send(request);
-            // return this.Ok(response);
             return await this.HandleRequest<AddProductRequest, AddProductResponse>(request);
         }
 
@@ -56,13 +42,7 @@ namespace Dietownik.Controllers
         [Route("{productId}")]
         public async Task<IActionResult> UpdateProduct(int productId, [FromBody] UpdateProductRequest request)
         {
-            // var product = new UpdateProductRequest()
-            // {
-            //     ProductId = productId
-            // };
             request.productId = productId;
-            // var response = await this.mediator.Send(request);
-            // return this.Ok(response);
             return await this.HandleRequest<UpdateProductRequest, UpdateProductResponse>(request);
         }
 
@@ -74,8 +54,6 @@ namespace Dietownik.Controllers
             {
                 ProductId = productId
             };
-            // var response = await this.mediator.Send(request);
-            // return this.Ok(response);
             return await this.HandleRequestWithoutResponseBody<DeleteProductRequest, DeleteProductResponse>(request);
         }
     }

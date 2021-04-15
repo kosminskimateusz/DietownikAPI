@@ -9,9 +9,9 @@ namespace Dietownik.ApplicationServices.API.Validators
         {
             this.RuleFor(x => x.Name).Length(2, 150);
             this.RuleFor(x => x.Kcal).GreaterThanOrEqualTo(0);
-            this.RuleFor(x => x.FatsPerHundredGramms).InclusiveBetween(0,100);
-            this.RuleFor(x => x.CarbsPerHundredGrams).InclusiveBetween(0,100);
-            this.RuleFor(x => x.ProteinsPerHundredGrams).InclusiveBetween(0,100);
+            this.RuleFor(x => x.Fats).InclusiveBetween(0, 100);
+            this.RuleFor(x => x.Carbs).InclusiveBetween(0, 100);
+            this.RuleFor(x => x.Proteins).InclusiveBetween(0, 100);
         }
     }
 }
