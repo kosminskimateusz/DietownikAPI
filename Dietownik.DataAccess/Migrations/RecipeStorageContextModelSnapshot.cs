@@ -50,10 +50,10 @@ namespace Dietownik.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("CarbsPerHundredGrams")
+                    b.Property<decimal>("Carbs")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("FatsPerHundredGrams")
+                    b.Property<decimal>("Fats")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Kcal")
@@ -64,7 +64,7 @@ namespace Dietownik.DataAccess.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<decimal>("ProteinsPerHundredGrams")
+                    b.Property<decimal>("Proteins")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -79,10 +79,22 @@ namespace Dietownik.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<decimal>("CarbsFull")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("FatsFull")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("KcalFull")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<decimal>("ProteinsFull")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
