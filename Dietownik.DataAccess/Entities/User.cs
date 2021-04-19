@@ -8,6 +8,6 @@ namespace Dietownik.DataAccess.Entities
         public string Password { get; set; }
         public string Email { get; set; }
         public bool SpecialUser { get; set; }
-        public Profile Profile { get; set; }
+        public UserProfile Profile { get; set; }
     }
 }

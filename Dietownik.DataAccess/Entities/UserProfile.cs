@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Dietownik.DataAccess.Entities
 {
-    public class Profile : EntityBase
+    public class UserProfile : EntityBase
     {
         public string Name { get; set; }
         public string LastName { get; set; }

@@ -9,20 +9,20 @@ namespace Dietownik.DataAccess.Entities
         [Required]
         [MaxLength(250)]
         public string Name { get; set; }
-        public int AuthorId { get; set; } // Profile
         public List<Ingredient> Ingredients { get; set; }
         [Required]
-        [Column(TypeName = "decimal(18,1")]
+        [Column(TypeName = "decimal(18,1)")]
         public decimal KcalFull { get; set; }
         [Required]
-        [Column(TypeName = "decimal(18,1")]
+        [Column(TypeName = "decimal(18,1)")]
         public decimal FatsFull { get; set; }
         [Required]
-        [Column(TypeName = "decimal(18,1")]
+        [Column(TypeName = "decimal(18,1)")]
         public decimal CarbsFull { get; set; }
         [Required]
-        [Column(TypeName = "decimal(18,1")]
+        [Column(TypeName = "decimal(18,1)")]
         public decimal ProteinsFull { get; set; }
 
+        // public int UserProfileId { get; set; } // Profile
     }
 }
