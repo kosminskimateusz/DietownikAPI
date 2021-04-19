@@ -9,6 +9,7 @@ namespace Dietownik.DataAccess.Entities
         [Required]
         [MaxLength(250)]
         public string Name { get; set; }
+        public int AuthorId { get; set; } // Profile
         public List<Ingredient> Ingredients { get; set; }
         [Required]
         [Column(TypeName = "decimal(18,1")]
