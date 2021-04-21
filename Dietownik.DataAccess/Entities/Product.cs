@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Dietownik.DataAccess.Entities
 {
     public class Product : EntityBase
     {
         [Required]
+        [NotNull]
         [MaxLength(150)]
         public string Name { get; set; }
 
