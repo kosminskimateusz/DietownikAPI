@@ -27,13 +27,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
             {
                 Id = request.ProductId
             };
+
             var product = await this.queryExecutor.Execute(query);
-            var mappedProduct = this.mapper.Map<Domain.Models.Product>(product);
-            var response = new GetProductByIdResponse()
+
+            return new GetProductByIdResponse()
             {
-                Data = mappedProduct
+                Data = this.mapper.Map<Domain.Models.Product>(product)
             };
-            return response;
         }
     }
 }

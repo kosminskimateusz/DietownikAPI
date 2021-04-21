@@ -27,10 +27,12 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             {
                 Parameter = recipe
             };
+
             var updatedRecipe = await commandExecutor.Execute(command);
+
             return new UpdateRecipeResponse()
             {
-                Data = mapper.Map<ApplicationServices.API.Domain.Models.Recipe>(updatedRecipe)
+                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Recipe>(updatedRecipe)
             };
         }
     }

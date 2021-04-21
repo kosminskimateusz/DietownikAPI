@@ -26,10 +26,12 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             {
                 Id = request.RecipeId
             };
+
             var recipe = await this.queryExecutor.Execute(query);
+
             return new GetRecipeByIdResponse()
             {
-                Data = mapper.Map<Recipe>(recipe)
+                Data = this.mapper.Map<Recipe>(recipe)
             };
         }
     }

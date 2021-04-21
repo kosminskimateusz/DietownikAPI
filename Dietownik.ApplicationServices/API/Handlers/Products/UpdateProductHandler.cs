@@ -25,22 +25,17 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
         public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
-            // var query = new GetProductByIdQuery()
-            // {
-            //     Id = request.ProductId
-            // };
-            // var product = await this.queryExecutor.Execute(query);
             var updatedProduct = this.mapper.Map<DataAccess.Entities.Product>(request);
             var command = new UpdateProductCommand()
             {
                 Parameter = updatedProduct
             };
             var updateDb = await this.commandExecutor.Execute(command);
-            var response = new UpdateProductResponse()
+
+            return new UpdateProductResponse()
             {
                 Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Product>(updatedProduct)
             };
-            return response;
         }
     }
 }

@@ -27,7 +27,9 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             {
                 Parameter = recipe
             };
+
             var deletedRecipe = await commandExecutor.Execute(command);
+
             return new DeleteRecipeResponse()
             {
                 Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Recipe>(deletedRecipe)

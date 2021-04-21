@@ -29,14 +29,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             {
                 SearchPhrase = request.SearchPhrase
             };
+
             var recipes = await queryExecutor.Execute(recipesQuery);
 
-            var response = new GetRecipesResponse()
+            return new GetRecipesResponse()
             {
-                Data = mapper.Map<List<Recipe>>(recipes)
+                Data = this.mapper.Map<List<Recipe>>(recipes)
             };
-
-            return response;
         }
     }
 }

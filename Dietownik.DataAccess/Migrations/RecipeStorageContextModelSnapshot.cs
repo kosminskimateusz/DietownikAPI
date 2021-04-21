@@ -19,26 +19,6 @@ namespace Dietownik.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.Day", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Days");
-                });
-
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
                 {
                     b.Property<int>("Id")
@@ -157,8 +137,8 @@ namespace Dietownik.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DayId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("PreferedKcal")
                         .HasColumnType("decimal(18,1)");
@@ -166,11 +146,14 @@ namespace Dietownik.DataAccess.Migrations
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("DayId");
-
                     b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("SavedRecipes");
                 });
@@ -242,15 +225,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.ToTable("UsersProfiles");
                 });
 
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.Day", b =>
-                {
-                    b.HasOne("Dietownik.DataAccess.Entities.User", null)
-                        .WithMany("Days")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
                 {
                     b.HasOne("Dietownik.DataAccess.Entities.Product", null)
@@ -277,22 +251,17 @@ namespace Dietownik.DataAccess.Migrations
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.SavedRecipe", b =>
                 {
-                    b.HasOne("Dietownik.DataAccess.Entities.Day", null)
-                        .WithMany("SavedRecipes")
-                        .HasForeignKey("DayId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Dietownik.DataAccess.Entities.Recipe", null)
                         .WithMany("SavedRecipes")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
 
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.Day", b =>
-                {
-                    b.Navigation("SavedRecipes");
+                    b.HasOne("Dietownik.DataAccess.Entities.User", null)
+                        .WithMany("SavedRecipes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Product", b =>
@@ -309,9 +278,9 @@ namespace Dietownik.DataAccess.Migrations
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.User", b =>
                 {
-                    b.Navigation("Days");
-
                     b.Navigation("Messages");
+
+                    b.Navigation("SavedRecipes");
                 });
 #pragma warning restore 612, 618
         }

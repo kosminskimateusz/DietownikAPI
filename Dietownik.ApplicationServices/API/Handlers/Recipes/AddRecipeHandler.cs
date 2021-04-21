@@ -24,9 +24,10 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             var recipe = this.mapper.Map<DataAccess.Entities.Recipe>(request);
             var command = new AddRecipeCommand() { Parameter = recipe };
             var productFromDb = await this.commandExecutor.Execute(command);
+
             return new AddRecipeResponse()
             {
-                Data = mapper.Map<Recipe>(productFromDb)
+                Data = this.mapper.Map<Recipe>(productFromDb)
             };
         }
     }

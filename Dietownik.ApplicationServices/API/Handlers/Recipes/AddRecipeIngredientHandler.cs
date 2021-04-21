@@ -32,6 +32,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             {
                 Parameter = ingredient
             };
+
             var ingredientFromDb = await commandExecutor.Execute(command);
 
             return new AddRecipeIngredientResponse()

@@ -25,6 +25,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
             var product = this.mapper.Map<Product>(request);
             var command = new DeleteProductCommand() { Parameter = product };
             var productFromDb = await this.commandExecutor.Execute(command);
+
             return new DeleteProductResponse()
             {
                 Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.Product>(productFromDb)
