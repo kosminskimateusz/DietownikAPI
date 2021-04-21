@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.ApplicationServices.Mappings;
 using Dietownik.DataAccess;
@@ -16,13 +17,11 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
     {
         private readonly IMapper mapper;
         private readonly IQueryExecutor queryExecutor;
-        private readonly IFullRecipeMap recipeMap;
 
-        public GetRecipesHandler(IMapper mapper, IQueryExecutor queryExecutor, IFullRecipeMap recipeMap)
+        public GetRecipesHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
             this.mapper = mapper;
             this.queryExecutor = queryExecutor;
-            this.recipeMap = recipeMap;
         }
         public async Task<GetRecipesResponse> Handle(GetRecipesRequest request, CancellationToken cancellationToken)
         {
@@ -32,21 +31,9 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             };
             var recipes = await queryExecutor.Execute(recipesQuery);
 
-            // Wyciągnięcie modelu Recipe do wyświetlenia przy pomocy foreach
-
-            List<ApplicationServices.API.Domain.Models.Recipe> recipesModel = new List<Domain.Models.Recipe>();
-
-            foreach (var recipe in recipes)
-            {
-                var mappedRecipe = await recipeMap.Map(recipe);
-                recipesModel.Add(mappedRecipe);
-            }
-
-            // Koniec
-
             var response = new GetRecipesResponse()
             {
-                Data = recipesModel
+                Data = mapper.Map<List<Recipe>>(recipes)
             };
 
             return response;

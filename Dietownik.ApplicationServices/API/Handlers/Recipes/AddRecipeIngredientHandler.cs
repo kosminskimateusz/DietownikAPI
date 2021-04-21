@@ -34,21 +34,9 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             };
             var ingredientFromDb = await commandExecutor.Execute(command);
 
-            var query = new GetProductByIdQuery()
-            {
-                Id = request.ProductId
-            };
-            var productForIngredient = await this.queryExecutor.Execute(query);
-            var fullIngredient = new ApplicationServices.API.Domain.Models.Ingredient()
-            {
-                Id = ingredientFromDb.Id,
-                Weigth = ingredientFromDb.Weigth,
-                Name = productForIngredient.Name,
-                Kcal = productForIngredient.Kcal * ingredientFromDb.Weigth / 100
-            };
             return new AddRecipeIngredientResponse()
             {
-                Data = fullIngredient
+                Data = this.mapper.Map<Domain.Models.Ingredient>(ingredientFromDb)
             };
         }
     }

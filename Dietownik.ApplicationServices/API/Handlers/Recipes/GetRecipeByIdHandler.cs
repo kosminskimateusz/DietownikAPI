@@ -14,13 +14,11 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
     {
         private readonly IMapper mapper;
         private readonly IQueryExecutor queryExecutor;
-        private readonly IFullRecipeMap recipeMap;
 
-        public GetRecipeByIdHandler(IMapper mapper, IQueryExecutor queryExecutor, IFullRecipeMap recipeMap)
+        public GetRecipeByIdHandler(IMapper mapper, IQueryExecutor queryExecutor)
         {
             this.mapper = mapper;
             this.queryExecutor = queryExecutor;
-            this.recipeMap = recipeMap;
         }
         public async Task<GetRecipeByIdResponse> Handle(GetRecipeByIdRequest request, CancellationToken cancellationToken)
         {
@@ -31,7 +29,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             var recipe = await this.queryExecutor.Execute(query);
             return new GetRecipeByIdResponse()
             {
-                Data = await recipeMap.Map(recipe)
+                Data = mapper.Map<Recipe>(recipe)
             };
         }
     }

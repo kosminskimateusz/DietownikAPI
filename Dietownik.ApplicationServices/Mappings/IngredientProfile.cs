@@ -15,7 +15,7 @@ namespace Dietownik.ApplicationServices.Mappings
 
             this.CreateMap<Ingredient, ApplicationServices.API.Domain.Models.Ingredient>()
             .ForMember(ingredient => ingredient.Id, option => option.MapFrom(entity => entity.Id))
-            .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(entity => entity.Weigth));            
+            .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(entity => entity.Weigth));
         }
     }
 }

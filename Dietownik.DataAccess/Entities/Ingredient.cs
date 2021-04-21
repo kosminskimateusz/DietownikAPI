@@ -10,9 +10,11 @@ namespace Dietownik.DataAccess.Entities
         [NotNull]
         [Column(TypeName = "decimal(18,1)")]
         public decimal Weigth { get; set; }
+
         [Required]
         [NotNull]
         public int ProductId { get; set; }
+
         [Required]
         [NotNull]
         public int RecipeId { get; set; }

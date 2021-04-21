@@ -47,7 +47,6 @@ namespace Dietownik
 
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
-            services.AddTransient<IFullRecipeMap, FullRecipeMap>(); // Mój wymysł na potrzeby ładnego przedstawienia przepisu ze składnikami.
 
             services.AddAutoMapper(typeof(ProductProfile).Assembly);
 
