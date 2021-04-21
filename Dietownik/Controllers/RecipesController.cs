@@ -42,7 +42,7 @@ namespace Dietownik.Controllers
         }
 
         [HttpPost]
-        [Route("{recipeId}/ingredients")]
+        [Route("{recipeId}/Ingredients")]
         public async Task<IActionResult> AddRecipeIngredient([FromRoute] int recipeId, [FromBody] AddRecipeIngredientRequest request)
         {
             request.recipeId = recipeId;

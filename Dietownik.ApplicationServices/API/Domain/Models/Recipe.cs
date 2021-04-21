@@ -7,9 +7,9 @@ namespace Dietownik.ApplicationServices.API.Domain.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<Ingredient> Ingredients { get; set; }
-        public decimal KcalFull { get; set; }
-        public decimal FatsFull { get; set; }
-        public decimal CarbsFull { get; set; }
-        public decimal ProteinsFull { get; set; }
+        public decimal Kcal { get; set; }
+        public decimal Fats { get; set; }
+        public decimal Carbs { get; set; }
+        public decimal Proteins { get; set; }
     }
 }
