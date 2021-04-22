@@ -5,7 +5,6 @@ using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Recipes;
-using Dietownik.DataAccess.CQRS.Queries.Products;
 using Dietownik.DataAccess.Entities;
 using MediatR;
 

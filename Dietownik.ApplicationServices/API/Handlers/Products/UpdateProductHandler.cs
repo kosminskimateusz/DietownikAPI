@@ -1,13 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Products;
-using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Products;
-using Dietownik.DataAccess.CQRS.Queries.Products;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Products
