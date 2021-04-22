@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Dietownik.ApplicationServices.API.Domain.Ingredients;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,8 +9,15 @@ namespace Dietownik.Controllers
     [Route("[controller]")]
     public class IngredientsController : ApiControllerBase
     {
-        protected IngredientsController(IMediator mediator) : base(mediator)
+        public IngredientsController(IMediator mediator) : base(mediator)
         {
+        }
+
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> AddRecipeIngredient([FromBody] AddIngredientRequest request)
+        {
+            return await this.HandleRequest<AddIngredientRequest, AddIngredientResponse>(request);
         }
     }
 }

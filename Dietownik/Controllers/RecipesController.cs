@@ -41,13 +41,15 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<AddRecipeRequest, AddRecipeResponse>(request);
         }
 
-        [HttpPost]
-        [Route("{recipeId}/Ingredients")]
-        public async Task<IActionResult> AddRecipeIngredient([FromRoute] int recipeId, [FromBody] AddRecipeIngredientRequest request)
-        {
-            request.recipeId = recipeId;
-            return await this.HandleRequest<AddRecipeIngredientRequest, AddRecipeIngredientResponse>(request);
-        }
+        // [HttpPost]
+        // [Route("{recipeId}/Ingredients")]
+        // public async Task<IActionResult> AddRecipeIngredient([FromRoute] int recipeId, [FromBody] AddRecipeIngredientRequest request)
+        // {
+        //     request.recipeId = recipeId;
+        //     return await this.HandleRequest<AddRecipeIngredientRequest, AddRecipeIngredientResponse>(request);
+        // }
+
+        // moved to IngredientsController
 
         [HttpPut]
         [Route("{recipeId}")]
