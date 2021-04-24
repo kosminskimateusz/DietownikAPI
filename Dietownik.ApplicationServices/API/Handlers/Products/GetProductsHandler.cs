@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries.Products;
@@ -30,7 +31,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new GetProductsResponse()
             {
-                Data = this.mapper.Map<List<Domain.Models.Product>>(products)
+                Data = this.mapper.Map<List<Product>>(products)
             };
         }
     }

@@ -19,5 +19,12 @@ namespace Dietownik.Controllers
         {
             return await this.HandleRequest<AddIngredientRequest, AddIngredientResponse>(request);
         }
+
+        [HttpGet]
+        [Route("")]
+        public async Task<IActionResult> GetAllIngredients([FromQuery] GetIngredientsRequest request)
+        {
+            return await this.HandleRequest<GetIngredientsRequest, GetIngredientsResponse>(request);
+        }
     }
 }
