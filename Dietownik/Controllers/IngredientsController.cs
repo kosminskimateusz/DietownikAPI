@@ -26,5 +26,16 @@ namespace Dietownik.Controllers
         {
             return await this.HandleRequest<GetIngredientsRequest, GetIngredientsResponse>(request);
         }
+
+        [HttpDelete]
+        [Route("{ingredientId}")]
+        public async Task<IActionResult> DeleteIngredient([FromRoute] int ingredientId)
+        {
+            var request = new DeleteIngredientRequest()
+            {
+                IngredientId = ingredientId
+            };
+            return await this.HandleRequestWithoutResponseBody<DeleteIngredientRequest, DeleteIngredientResponse>(request);
+        }
     }
 }

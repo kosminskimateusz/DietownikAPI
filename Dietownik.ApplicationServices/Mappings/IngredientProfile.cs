@@ -26,6 +26,8 @@ namespace Dietownik.ApplicationServices.Mappings
             .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.ProductId))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth));
 
+            this.CreateMap<DeleteIngredientRequest, Ingredient>()
+            .ForMember(ingredient => ingredient.Id, option => option.MapFrom(request => request.IngredientId));
         }
     }
 }
