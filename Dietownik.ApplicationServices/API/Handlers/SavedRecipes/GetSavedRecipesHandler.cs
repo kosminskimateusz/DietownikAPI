@@ -23,7 +23,11 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
 
         public async Task<GetSavedRecipesResponse> Handle(GetSavedRecipesRequest request, CancellationToken cancellationToken)
         {
-            var query = new GetSavedRecipesQuery();
+            var query = new GetSavedRecipesQuery()
+            {
+                UserId = request.UserId,
+                Date = request.Date
+            };
             var savedRecipes = await this.queryExecutor.Execute(query);
             return new GetSavedRecipesResponse()
             {
