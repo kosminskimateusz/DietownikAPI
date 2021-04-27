@@ -178,9 +178,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.Property<bool>("SpecialUser")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserProfileId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -221,6 +218,9 @@ namespace Dietownik.DataAccess.Migrations
                         .HasColumnType("decimal(18,1)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("UsersProfiles");
                 });
@@ -264,6 +264,15 @@ namespace Dietownik.DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Dietownik.DataAccess.Entities.UserProfile", b =>
+                {
+                    b.HasOne("Dietownik.DataAccess.Entities.User", null)
+                        .WithOne("UserProfile")
+                        .HasForeignKey("Dietownik.DataAccess.Entities.UserProfile", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Product", b =>
                 {
                     b.Navigation("Ingredients");
@@ -281,6 +290,8 @@ namespace Dietownik.DataAccess.Migrations
                     b.Navigation("Messages");
 
                     b.Navigation("SavedRecipes");
+
+                    b.Navigation("UserProfile");
                 });
 #pragma warning restore 612, 618
         }

@@ -24,8 +24,7 @@ namespace Dietownik.DataAccess.Entities
         [Required]
         public bool SpecialUser { get; set; }
 
-        [Required]
-        public int UserProfileId { get; set; }
+        public UserProfile UserProfile { get; set; }
 
         public List<Message> Messages { get; set; }
         public List<SavedRecipe> SavedRecipes { get; set; }
