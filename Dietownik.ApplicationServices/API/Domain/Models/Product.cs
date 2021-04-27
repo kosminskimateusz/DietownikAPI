@@ -1,8 +1,7 @@
 namespace Dietownik.ApplicationServices.API.Domain.Models
 {
-    public class Product
+    public class Product : ModelBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Kcal { get; set; }
         public decimal Fats { get; set; }

@@ -18,7 +18,7 @@ namespace Dietownik.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllRecipes([FromQuery] GetRecipesRequest request)
+        public async Task<IActionResult> GetRecipes([FromQuery] GetRecipesRequest request)
         {
             return await this.HandleRequest<GetRecipesRequest, GetRecipesResponse>(request);
         }

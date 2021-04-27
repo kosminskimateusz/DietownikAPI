@@ -2,9 +2,8 @@ using System.Collections.Generic;
 
 namespace Dietownik.ApplicationServices.API.Domain.Models
 {
-    public class Recipe
+    public class Recipe : ModelBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public decimal Kcal { get; set; }

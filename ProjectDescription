@@ -1,0 +1,26 @@
+
+Project Name:
+Dietownik
+
+Resources:
+    • User (SpecialUser),
+    • Profile,
+    • Callendar,
+    • Day in Callendar (14 days),
+    • Recipes,
+    • Ingredients,
+    • Products,
+    • MessageReceived,
+    • MessageSent,
+
+
+
+Relations:
+    1) Every User/Admin have one Profile (relation 1 to 1),
+    2) Every Profile have zero, one or more MessageReceived (relation 1 to 0…*),
+    3) Every Profile have zero, one or more MessageSent (relation 1 to 0…*),
+    4) Every Profile have one Calendar (relation 1 to 1),
+    5) Every Calendar have fourteen Day (relation 1 to 14),
+    6) Every Day have zero, one or more to five Recipe (relation 1 to 0…5),
+    7) Every Recipe have one or more Ingredient (relation 1 to 1…*),
+    8) Every Ingredient have one Product (relation 1 to 1).
