@@ -19,5 +19,12 @@ namespace Dietownik.Controllers
         {
             return await this.HandleRequest<GetSavedRecipesRequest, GetSavedRecipesResponse>(request);
         }
+
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> AddSavedRecipe([FromBody] AddSavedRecipeRequest request)
+        {
+            return await this.HandleRequest<AddSavedRecipeRequest, AddSavedRecipeResponse>(request);
+        }
     }
 }
