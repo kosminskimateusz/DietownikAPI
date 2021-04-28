@@ -20,6 +20,13 @@ namespace Dietownik.ApplicationServices.Mappings
             .ForMember(entity => entity.RecipeId, option => option.MapFrom(req => req.RecipeId))
             .ForMember(entity => entity.UserId, option => option.MapFrom(req => req.UserId))
             .ForMember(entity => entity.Date, option => option.MapFrom(req => req.Date));
+
+            this.CreateMap<UpdateSavedRecipeRequest, SavedRecipe>()
+            .ForMember(entity => entity.Id, option => option.MapFrom(req => req.id))
+            .ForMember(entity => entity.PreferedKcal, option => option.MapFrom(req => req.PreferedKcal));
+
+            this.CreateMap<DeleteSavedRecipeRequest, SavedRecipe>()
+            .ForMember(entity => entity.Id, option => option.MapFrom(req => req.SavedRecipeId));
         }
     }
 }

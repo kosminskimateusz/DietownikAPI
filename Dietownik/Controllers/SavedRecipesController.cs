@@ -26,5 +26,24 @@ namespace Dietownik.Controllers
         {
             return await this.HandleRequest<AddSavedRecipeRequest, AddSavedRecipeResponse>(request);
         }
+
+        [HttpPut]
+        [Route("{savedRecipeId}")]
+        public async Task<IActionResult> UpdateSavedRecipe([FromBody] UpdateSavedRecipeRequest request, [FromRoute] int savedRecipeId)
+        {
+            request.id = savedRecipeId;
+            return await this.HandleRequest<UpdateSavedRecipeRequest, UpdateSavedRecipeResponse>(request);
+        }
+
+        [HttpDelete]
+        [Route("{savedRecipeId}")]
+        public async Task<IActionResult> DeleteSavedRecipe([FromRoute] int savedRecipeId)
+        {
+            var request = new DeleteSavedRecipeRequest()
+            {
+                SavedRecipeId = savedRecipeId
+            };
+            return await this.HandleRequestWithoutResponseBody<DeleteSavedRecipeRequest, DeleteSavedRecipeResponse>(request);
+        }
     }
 }
