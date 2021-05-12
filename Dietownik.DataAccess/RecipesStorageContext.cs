@@ -14,9 +14,9 @@ namespace Dietownik.DataAccess
         public DbSet<Product> Products { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserProfile> UsersProfiles { get; set; }
         public DbSet<SavedRecipe> SavedRecipes { get; set; }
-        public DbSet<Message> Messages { get; set; }
+        // public DbSet<UserProfile> UsersProfiles { get; set; }
+        // public DbSet<Message> Messages { get; set; }
 
     }
 }

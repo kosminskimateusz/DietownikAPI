@@ -44,34 +44,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.ToTable("Ingredients");
                 });
 
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.Message", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("FromUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ToUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Messages");
-                });
-
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -188,43 +160,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.UserProfile", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Height")
-                        .HasColumnType("decimal(18,1)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18,1)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("UsersProfiles");
-                });
-
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Ingredient", b =>
                 {
                     b.HasOne("Dietownik.DataAccess.Entities.Product", null)
@@ -236,15 +171,6 @@ namespace Dietownik.DataAccess.Migrations
                     b.HasOne("Dietownik.DataAccess.Entities.Recipe", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.Message", b =>
-                {
-                    b.HasOne("Dietownik.DataAccess.Entities.User", null)
-                        .WithMany("Messages")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -264,15 +190,6 @@ namespace Dietownik.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Dietownik.DataAccess.Entities.UserProfile", b =>
-                {
-                    b.HasOne("Dietownik.DataAccess.Entities.User", null)
-                        .WithOne("UserProfile")
-                        .HasForeignKey("Dietownik.DataAccess.Entities.UserProfile", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Dietownik.DataAccess.Entities.Product", b =>
                 {
                     b.Navigation("Ingredients");
@@ -287,11 +204,7 @@ namespace Dietownik.DataAccess.Migrations
 
             modelBuilder.Entity("Dietownik.DataAccess.Entities.User", b =>
                 {
-                    b.Navigation("Messages");
-
                     b.Navigation("SavedRecipes");
-
-                    b.Navigation("UserProfile");
                 });
 #pragma warning restore 612, 618
         }

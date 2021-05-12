@@ -24,3 +24,8 @@ Relations:
     6) Every Day have zero, one or more to five Recipe (relation 1 to 0…5),
     7) Every Recipe have one or more Ingredient (relation 1 to 1…*),
     8) Every Ingredient have one Product (relation 1 to 1).
+
+
+Ideas:
+    1) In Recipe description show which and how much ingredient add now. For example:
+            Add 230g flour, 2g backing powder, 3g salt, mix them all. In other disch mix 310ml water, with ... etc.
