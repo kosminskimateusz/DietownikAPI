@@ -13,9 +13,12 @@ namespace Dietownik.DataAccess.CQRS.Queries.Ingredients
         {
             if (this.RecipeIdSearch == 0)
             {
-                return context.Ingredients.ToListAsync();
+                return context.Ingredients
+                .ToListAsync();
             }
-            return context.Ingredients.Where(ingredient => ingredient.RecipeId.Equals(this.RecipeIdSearch)).ToListAsync();
+            return context.Ingredients
+            .Where(ingredient => ingredient.RecipeId.Equals(this.RecipeIdSearch))
+            .ToListAsync();
         }
     }
 }
