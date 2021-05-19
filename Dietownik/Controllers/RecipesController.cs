@@ -9,13 +9,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dietownik.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/recipes")]
     public class RecipesController : ApiControllerBase
     {
         public RecipesController(IMediator mediator) : base(mediator)
         {
         }
 
+        // GET api/recipes
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetRecipes([FromQuery] GetRecipesRequest request)
@@ -23,17 +24,19 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<GetRecipesRequest, GetRecipesResponse>(request);
         }
 
+        // GET api/recipes/{id}
         [HttpGet]
-        [Route("{recipeId}")]
-        public async Task<IActionResult> GetRecipeById([FromRoute] int recipeId)
+        [Route("{id}")]
+        public async Task<IActionResult> GetRecipeById([FromRoute] int id)
         {
             var request = new GetRecipeByIdRequest()
             {
-                RecipeId = recipeId
+                RecipeId = id
             };
             return await this.HandleRequest<GetRecipeByIdRequest, GetRecipeByIdResponse>(request);
         }
 
+        // POST api/recipes
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddRecipe([FromBody] AddRecipeRequest request)
@@ -41,31 +44,23 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<AddRecipeRequest, AddRecipeResponse>(request);
         }
 
-        // [HttpPost]
-        // [Route("{recipeId}/Ingredients")]
-        // public async Task<IActionResult> AddRecipeIngredient([FromRoute] int recipeId, [FromBody] AddRecipeIngredientRequest request)
-        // {
-        //     request.recipeId = recipeId;
-        //     return await this.HandleRequest<AddRecipeIngredientRequest, AddRecipeIngredientResponse>(request);
-        // }
-
-        // moved to IngredientsController
-
+        // PUT api/recipes/{id}
         [HttpPut]
-        [Route("{recipeId}")]
-        public async Task<IActionResult> UpdateRecipe([FromRoute] int recipeId, [FromBody] UpdateRecipeRequest request)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateRecipe([FromRoute] int id, [FromBody] UpdateRecipeRequest request)
         {
-            request.recipeId = recipeId;
+            request.recipeId = id;
             return await this.HandleRequest<UpdateRecipeRequest, UpdateRecipeResponse>(request);
         }
 
+        // DELETE api/recipes/{id}
         [HttpDelete]
-        [Route("{recipeId}")]
-        public async Task<IActionResult> DeleteRecipe([FromRoute] int recipeId)
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteRecipe([FromRoute] int id)
         {
             var request = new DeleteRecipeRequest()
             {
-                RecipeId = recipeId
+                RecipeId = id
             };
             return await this.HandleRequestWithoutResponseBody<DeleteRecipeRequest, DeleteRecipeResponse>(request);
         }

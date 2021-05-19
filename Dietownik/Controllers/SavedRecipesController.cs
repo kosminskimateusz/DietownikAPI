@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dietownik.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/saved-recipes")]
     public class SavedRecipesController : ApiControllerBase
     {
         public SavedRecipesController(IMediator mediator) : base(mediator)
         {
         }
 
+        // GET api/saved-recipes
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetSavedRecipes([FromQuery] GetSavedRecipesRequest request)
@@ -20,6 +21,7 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<GetSavedRecipesRequest, GetSavedRecipesResponse>(request);
         }
 
+        // POST api/saved-recipes
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddSavedRecipe([FromBody] AddSavedRecipeRequest request)
@@ -27,21 +29,23 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<AddSavedRecipeRequest, AddSavedRecipeResponse>(request);
         }
 
+        // PUT api/saved-recipes/{id}
         [HttpPut]
-        [Route("{savedRecipeId}")]
-        public async Task<IActionResult> UpdateSavedRecipe([FromBody] UpdateSavedRecipeRequest request, [FromRoute] int savedRecipeId)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateSavedRecipe([FromBody] UpdateSavedRecipeRequest request, [FromRoute] int id)
         {
-            request.id = savedRecipeId;
+            request.id = id;
             return await this.HandleRequest<UpdateSavedRecipeRequest, UpdateSavedRecipeResponse>(request);
         }
 
+        // DELETE api/saved-recipes/{id}
         [HttpDelete]
-        [Route("{savedRecipeId}")]
-        public async Task<IActionResult> DeleteSavedRecipe([FromRoute] int savedRecipeId)
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteSavedRecipe([FromRoute] int id)
         {
             var request = new DeleteSavedRecipeRequest()
             {
-                SavedRecipeId = savedRecipeId
+                SavedRecipeId = id
             };
             return await this.HandleRequestWithoutResponseBody<DeleteSavedRecipeRequest, DeleteSavedRecipeResponse>(request);
         }

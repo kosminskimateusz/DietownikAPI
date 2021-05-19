@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dietownik.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/users")]
     public class UsersController : ApiControllerBase
     {
         public UsersController(IMediator mediator) : base(mediator)
         {
         }
 
+        // POST api/users
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddUser([FromBody] AddUserRequest request)

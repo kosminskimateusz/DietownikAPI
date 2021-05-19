@@ -6,20 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dietownik.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/ingredients")]
     public class IngredientsController : ApiControllerBase
     {
         public IngredientsController(IMediator mediator) : base(mediator)
         {
         }
 
+        // GET api/ingredients
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllIngredients([FromQuery] GetIngredientsRequest request)
+        public async Task<IActionResult> GetIngredients([FromQuery] GetIngredientsRequest request)
         {
             return await this.HandleRequest<GetIngredientsRequest, GetIngredientsResponse>(request);
         }
 
+        // POST api/ingredients
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddIngredient([FromBody] AddIngredientRequest request)
@@ -27,21 +29,23 @@ namespace Dietownik.Controllers
             return await this.HandleRequest<AddIngredientRequest, AddIngredientResponse>(request);
         }
 
+        // PUT api/ingredients/{id}
         [HttpPut]
-        [Route("{ingredientId}")]
-        public async Task<IActionResult> UpdateIngredient([FromRoute] int ingredientId, [FromBody] UpdateIngredientRequest request)
+        [Route("{id}")]
+        public async Task<IActionResult> UpdateIngredient([FromRoute] int id, [FromBody] UpdateIngredientRequest request)
         {
-            request.ingredientId = ingredientId;
+            request.ingredientId = id;
             return await this.HandleRequest<UpdateIngredientRequest, UpdateIngredientResponse>(request);
         }
 
+        // DELETE api/ingredients/{id}
         [HttpDelete]
-        [Route("{ingredientId}")]
-        public async Task<IActionResult> DeleteIngredient([FromRoute] int ingredientId)
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteIngredient([FromRoute] int id)
         {
             var request = new DeleteIngredientRequest()
             {
-                IngredientId = ingredientId
+                IngredientId = id
             };
             return await this.HandleRequestWithoutResponseBody<DeleteIngredientRequest, DeleteIngredientResponse>(request);
         }
