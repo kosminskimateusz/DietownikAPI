@@ -3,15 +3,16 @@ using FluentValidation;
 
 namespace Dietownik.ApplicationServices.API.Validators
 {
-    public class AddProductRequestValidator : AbstractValidator<AddProductRequest>
+    public class UpdateProductRequestValidator : AbstractValidator<UpdateProductRequest>
     {
-        public AddProductRequestValidator()
+        public UpdateProductRequestValidator()
         {
             this.RuleFor(x => x.Name).Length(2, 150);
-            this.RuleFor(x => x.Kcal).GreaterThanOrEqualTo(0);
+            this.RuleFor(x => x.Kcal).InclusiveBetween(0, 900);
             this.RuleFor(x => x.Fats).InclusiveBetween(0, 100);
             this.RuleFor(x => x.Carbs).InclusiveBetween(0, 100);
             this.RuleFor(x => x.Proteins).InclusiveBetween(0, 100);
         }
+
     }
 }
