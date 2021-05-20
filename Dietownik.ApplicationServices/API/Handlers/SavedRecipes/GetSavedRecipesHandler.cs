@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.SavedRecipes;
+using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries.SavedRecipes;
 using MediatR;
@@ -29,6 +30,15 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
                 Date = request.Date
             };
             var savedRecipes = await this.queryExecutor.Execute(query);
+
+            if (savedRecipes == null)
+            {
+                return new GetSavedRecipesResponse()
+                {
+                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             return new GetSavedRecipesResponse()
             {
                 Data = this.mapper.Map<List<SavedRecipe>>(savedRecipes)

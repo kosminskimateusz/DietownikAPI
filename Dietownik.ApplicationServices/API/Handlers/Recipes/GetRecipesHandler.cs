@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
+using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries.Recipes;
 using MediatR;
@@ -30,6 +31,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
 
             var recipes = await queryExecutor.Execute(recipesQuery);
 
+            if (recipes == null)
+            {
+                return new GetRecipesResponse()
+                {
+                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                };
+            }
             return new GetRecipesResponse()
             {
                 Data = this.mapper.Map<List<Recipe>>(recipes)

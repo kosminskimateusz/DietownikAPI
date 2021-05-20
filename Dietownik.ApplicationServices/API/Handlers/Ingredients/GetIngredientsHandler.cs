@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Ingredients;
 using Dietownik.ApplicationServices.API.Domain.Models;
+using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries.Ingredients;
 using MediatR;
@@ -29,6 +30,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Ingredients
 
             var ingredients = await this.queryExecutor.Execute(query);
 
+            if (ingredients == null)
+            {
+                return new GetIngredientsResponse()
+                {
+                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                };
+            }
             return new GetIngredientsResponse()
             {
                 Data = this.mapper.Map<List<Ingredient>>(ingredients)

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
+using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS.Queries.Products;
 using MediatR;
@@ -28,6 +29,14 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
             };
 
             var products = await this.queryExecutor.Execute(query);
+
+            if (products == null)
+            {
+                return new GetProductsResponse()
+                {
+                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                };
+            }
 
             return new GetProductsResponse()
             {
