@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Dietownik.Controllers
 {
@@ -9,8 +10,9 @@ namespace Dietownik.Controllers
     [Route("api/products")]
     public class ProductsController : ApiControllerBase
     {
-        public ProductsController(IMediator mediator) : base(mediator)
+        public ProductsController(IMediator mediator, ILogger<ProductsController> logger) : base(mediator)
         {
+            logger.LogInformation("We are in Products!");
         }
 
         // GET api/products
