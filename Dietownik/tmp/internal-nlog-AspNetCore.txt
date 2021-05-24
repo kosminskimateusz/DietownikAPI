@@ -1,12 +1,12 @@
-2021-05-24 14:59:05.9519 Info Message Template Auto Format enabled
-2021-05-24 14:59:05.9652 Info Loading assembly: NLog.Web.AspNetCore
-2021-05-24 14:59:06.0130 Info Adding target FileTarget(Name=allfile)
-2021-05-24 14:59:06.0158 Info Adding target FileTarget(Name=ownFile-web)
-2021-05-24 14:59:06.0158 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
-2021-05-24 14:59:06.0193 Info Adding target ConsoleTarget(Name=lifetimeConsole)
-2021-05-24 14:59:06.0505 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=69, FilePath=/home/kosminskimateusz/NET/DietownikAPI/Dietownik/bin/Debug/net5.0/nlog.config
-2021-05-24 14:59:58.8429 Info Shutdown() called. Logger closing...
-2021-05-24 14:59:58.8429 Info Closing old configuration.
-2021-05-24 14:59:58.8521 Info Logger has been closed down.
-2021-05-24 14:59:58.8521 Info AppDomain Shutting down. Logger closing...
-2021-05-24 14:59:58.8545 Info Logger has been shut down.
+2021-05-24 15:27:38.9809 Info Message Template Auto Format enabled
+2021-05-24 15:27:38.9928 Info Loading assembly: NLog.Web.AspNetCore
+2021-05-24 15:27:39.0516 Info Adding target FileTarget(Name=allfile)
+2021-05-24 15:27:39.0516 Info Adding target FileTarget(Name=ownFile-web)
+2021-05-24 15:27:39.0548 Warn Skipping unrecognized property 'tolower=true` for ${level} (NLog.LayoutRenderers.LevelLayoutRenderer)
+2021-05-24 15:27:39.0548 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2021-05-24 15:27:39.0820 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=69, FilePath=/home/kosminskimateusz/NET/DietownikAPI/Dietownik/bin/Debug/net5.0/nlog.config
+2021-05-24 15:28:59.0702 Info Shutdown() called. Logger closing...
+2021-05-24 15:28:59.0705 Info Closing old configuration.
+2021-05-24 15:28:59.0792 Info Logger has been closed down.
+2021-05-24 15:28:59.0792 Info AppDomain Shutting down. Logger closing...
+2021-05-24 15:28:59.0792 Info Logger has been shut down.
