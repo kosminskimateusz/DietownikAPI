@@ -1,7 +1,9 @@
+using System;
 using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain.SavedRecipes;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Dietownik.Controllers
 {
@@ -9,8 +11,13 @@ namespace Dietownik.Controllers
     [Route("api/saved-recipes")]
     public class SavedRecipesController : ApiControllerBase
     {
-        public SavedRecipesController(IMediator mediator) : base(mediator)
+        private readonly IMediator mediator;
+        private readonly ILogger<SavedRecipesController> logger;
+
+        public SavedRecipesController(IMediator mediator, ILogger<SavedRecipesController> logger) : base(mediator, logger)
         {
+            this.mediator = mediator;
+            this.logger = logger;
         }
 
         // GET api/saved-recipes
@@ -18,6 +25,13 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> GetSavedRecipes([FromQuery] GetSavedRecipesRequest request)
         {
+            if (request.UserId != 0 && request.Date == new DateTime())
+                logger.LogInformation($"Get SavedRecipes user: {request.UserId}");
+            else if (request.UserId != 0 && request.Date != new DateTime())
+                logger.LogInformation($"Get SavedRecipes user: {request.UserId} from {request.Date}");
+            else
+                logger.LogInformation($"Get AllSavedRecipes");
+
             return await this.HandleRequest<GetSavedRecipesRequest, GetSavedRecipesResponse>(request);
         }
 
@@ -26,6 +40,8 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddSavedRecipe([FromBody] AddSavedRecipeRequest request)
         {
+            logger.LogInformation($"Add SavedRecipe to user : {request.UserId}");
+
             return await this.HandleRequest<AddSavedRecipeRequest, AddSavedRecipeResponse>(request);
         }
 
@@ -34,6 +50,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateSavedRecipe([FromBody] UpdateSavedRecipeRequest request, [FromRoute] int id)
         {
+            logger.LogInformation($"Update SavedRecipe id: {id}");
+
             request.id = id;
             return await this.HandleRequest<UpdateSavedRecipeRequest, UpdateSavedRecipeResponse>(request);
         }
@@ -43,6 +61,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteSavedRecipe([FromRoute] int id)
         {
+            logger.LogInformation($"Update SavedRecipe id: {id}");
+
             var request = new DeleteSavedRecipeRequest()
             {
                 SavedRecipeId = id

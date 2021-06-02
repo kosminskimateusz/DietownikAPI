@@ -12,7 +12,7 @@ namespace Dietownik.Controllers
     {
         private readonly ILogger<IngredientsController> logger;
 
-        public IngredientsController(IMediator mediator, ILogger<IngredientsController> logger) : base(mediator)
+        public IngredientsController(IMediator mediator, ILogger<IngredientsController> logger) : base(mediator, logger)
         {
             this.logger = logger;
         }
@@ -40,6 +40,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateIngredient([FromRoute] int id, [FromBody] UpdateIngredientRequest request)
         {
+            this.logger.LogInformation($"Update Ingredient with id: {id}");
             request.ingredientId = id;
             return await this.HandleRequest<UpdateIngredientRequest, UpdateIngredientResponse>(request);
         }
@@ -49,6 +50,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteIngredient([FromRoute] int id)
         {
+            logger.LogInformation($"Delete Ingredient with id: {id}");
             var request = new DeleteIngredientRequest()
             {
                 IngredientId = id

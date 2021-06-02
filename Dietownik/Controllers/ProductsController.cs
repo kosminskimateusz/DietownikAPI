@@ -12,7 +12,7 @@ namespace Dietownik.Controllers
     {
         private readonly ILogger<ProductsController> logger;
 
-        public ProductsController(IMediator mediator, ILogger<ProductsController> logger) : base(mediator)
+        public ProductsController(IMediator mediator, ILogger<ProductsController> logger) : base(mediator, logger)
         {
             this.logger = logger;
         }

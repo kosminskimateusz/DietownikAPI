@@ -5,6 +5,7 @@ using Dietownik.DataAccess;
 using Dietownik.DataAccess.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Dietownik.Controllers
 {
@@ -12,8 +13,11 @@ namespace Dietownik.Controllers
     [Route("api/recipes")]
     public class RecipesController : ApiControllerBase
     {
-        public RecipesController(IMediator mediator) : base(mediator)
+        private readonly ILogger<RecipesController> logger;
+
+        public RecipesController(IMediator mediator, ILogger<RecipesController> logger) : base(mediator, logger)
         {
+            this.logger = logger;
         }
 
         // GET api/recipes
@@ -21,6 +25,10 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> GetRecipes([FromQuery] GetRecipesRequest request)
         {
+            if (request.SearchPhrase == null)
+                this.logger.LogInformation("Get Recipes");
+            else
+                this.logger.LogInformation($"Get Recipes contains {request.SearchPhrase} in name");
             return await this.HandleRequest<GetRecipesRequest, GetRecipesResponse>(request);
         }
 
@@ -29,6 +37,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetRecipeById([FromRoute] int id)
         {
+            this.logger.LogInformation($"Get Recipe with id: {id}");
             var request = new GetRecipeByIdRequest()
             {
                 RecipeId = id
@@ -41,6 +50,7 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddRecipe([FromBody] AddRecipeRequest request)
         {
+            this.logger.LogInformation($"Add Recipe {request.Name}");
             return await this.HandleRequest<AddRecipeRequest, AddRecipeResponse>(request);
         }
 
@@ -49,6 +59,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateRecipe([FromRoute] int id, [FromBody] UpdateRecipeRequest request)
         {
+            this.logger.LogInformation($"Update Recipe with id: {id}");
             request.recipeId = id;
             return await this.HandleRequest<UpdateRecipeRequest, UpdateRecipeResponse>(request);
         }
@@ -58,6 +69,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteRecipe([FromRoute] int id)
         {
+            logger.LogInformation($"Delete Recipe with id: {id}");
             var request = new DeleteRecipeRequest()
             {
                 RecipeId = id

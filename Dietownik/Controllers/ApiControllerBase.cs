@@ -6,16 +6,19 @@ using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Dietownik.Controllers
 {
     public class ApiControllerBase : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly ILogger<ApiControllerBase> logger;
 
-        protected ApiControllerBase(IMediator mediator)
+        protected ApiControllerBase(IMediator mediator, ILogger<ApiControllerBase> logger)
         {
             this.mediator = mediator;
+            this.logger = logger;
         }
 
         protected async Task<IActionResult> HandleRequest<TRequest, TResponse>(TRequest request)
@@ -24,6 +27,12 @@ namespace Dietownik.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                var errors = this.ModelState
+                    .Where(x => x.Value.Errors.Any())
+                    .Select(x => new { errors = x.Value.Errors }).ToList();
+                foreach (var err in errors)
+                    logger.LogInformation($"{err.errors[0].ErrorMessage}");
+
                 return this.BadRequest(
                     this.ModelState
                     .Where(x => x.Value.Errors.Any())
@@ -34,6 +43,7 @@ namespace Dietownik.Controllers
 
             if (response.Error != null)
             {
+                logger.LogInformation($"{response.Error.Error}");
                 return this.ErrorResponse(response.Error);
             }
 
