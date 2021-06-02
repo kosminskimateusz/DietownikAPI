@@ -10,9 +10,11 @@ namespace Dietownik.Controllers
     [Route("api/products")]
     public class ProductsController : ApiControllerBase
     {
+        private readonly ILogger<ProductsController> logger;
+
         public ProductsController(IMediator mediator, ILogger<ProductsController> logger) : base(mediator)
         {
-            logger.LogInformation("We are in Products!");
+            this.logger = logger;
         }
 
         // GET api/products
@@ -20,6 +22,7 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> GetAllProducts([FromQuery] GetProductsRequest request)
         {
+            this.logger.LogInformation("Get Products");
             return await this.HandleRequest<GetProductsRequest, GetProductsResponse>(request);
         }
 
@@ -28,6 +31,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetProductById([FromRoute] int id)
         {
+            this.logger.LogInformation($"Get Product with id: {id} .");
             var request = new GetProductByIdRequest()
             {
                 ProductId = id
@@ -40,6 +44,7 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
+            this.logger.LogInformation($"Add Product:  Name\t{request.Name}");
             return await this.HandleRequest<AddProductRequest, AddProductResponse>(request);
         }
 
@@ -48,6 +53,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest request)
         {
+            this.logger.LogInformation($"Update Product with id: {id}");
             request.productId = id;
             return await this.HandleRequest<UpdateProductRequest, UpdateProductResponse>(request);
         }
@@ -57,6 +63,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
+            logger.LogInformation($"Delete Product with id: {id}");
             var request = new DeleteProductRequest()
             {
                 ProductId = id

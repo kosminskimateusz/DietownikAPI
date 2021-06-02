@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain.Ingredients;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Dietownik.Controllers
 {
@@ -9,8 +10,11 @@ namespace Dietownik.Controllers
     [Route("api/ingredients")]
     public class IngredientsController : ApiControllerBase
     {
-        public IngredientsController(IMediator mediator) : base(mediator)
+        private readonly ILogger<IngredientsController> logger;
+
+        public IngredientsController(IMediator mediator, ILogger<IngredientsController> logger) : base(mediator)
         {
+            this.logger = logger;
         }
 
         // GET api/ingredients
@@ -18,6 +22,7 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> GetIngredients([FromQuery] GetIngredientsRequest request)
         {
+            this.logger.LogInformation("Get Ingredients");
             return await this.HandleRequest<GetIngredientsRequest, GetIngredientsResponse>(request);
         }
 
@@ -26,6 +31,7 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddIngredient([FromBody] AddIngredientRequest request)
         {
+            this.logger.LogInformation($"Add Ingredient on ProductId: {request.ProductId} to RecipeId: {request.RecipeId}");
             return await this.HandleRequest<AddIngredientRequest, AddIngredientResponse>(request);
         }
 

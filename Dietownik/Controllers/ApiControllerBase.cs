@@ -33,7 +33,9 @@ namespace Dietownik.Controllers
             var response = await this.mediator.Send(request);
 
             if (response.Error != null)
+            {
                 return this.ErrorResponse(response.Error);
+            }
 
             return this.Ok(response);
         }
