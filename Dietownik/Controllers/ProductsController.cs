@@ -44,7 +44,8 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
-            this.logger.LogInformation($"Add Product:  Name\t{request.Name}");
+            if (this.ModelState.IsValid)
+                this.logger.LogInformation($"Add Product:  Name:\t{request.Name}");
             return await this.HandleRequest<AddProductRequest, AddProductResponse>(request);
         }
 
@@ -53,7 +54,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest request)
         {
-            this.logger.LogInformation($"Update Product with id: {id}");
+            if (this.ModelState.IsValid)
+                this.logger.LogInformation($"Update Product with id: {id}");
             request.productId = id;
             return await this.HandleRequest<UpdateProductRequest, UpdateProductResponse>(request);
         }

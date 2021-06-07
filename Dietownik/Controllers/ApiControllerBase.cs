@@ -56,6 +56,12 @@ namespace Dietownik.Controllers
         {
             if (!this.ModelState.IsValid)
             {
+                var errors = this.ModelState
+                    .Where(x => x.Value.Errors.Any())
+                    .Select(x => new { errors = x.Value.Errors }).ToList();
+                foreach (var err in errors)
+                    logger.LogInformation($"{err.errors[0].ErrorMessage}");
+
                 return this.BadRequest(
                     this.ModelState
                     .Where(x => x.Value.Errors.Any())
@@ -65,7 +71,10 @@ namespace Dietownik.Controllers
             var response = await this.mediator.Send(request);
 
             if (response.Error != null)
+            {
+                logger.LogInformation($"{response.Error.Error}");
                 return this.ErrorResponse(response.Error);
+            }
 
             return this.Ok();
         }
@@ -80,6 +89,8 @@ namespace Dietownik.Controllers
         {
             switch (errorType)
             {
+                case ErrorType.ValidationError:
+                    return HttpStatusCode.BadRequest;
                 case ErrorType.NotFound:
                     return HttpStatusCode.NotFound;
                 case ErrorType.InternalServerError:

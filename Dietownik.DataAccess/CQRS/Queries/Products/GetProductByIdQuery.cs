@@ -10,6 +10,9 @@ namespace Dietownik.DataAccess.CQRS.Queries.Products
         public async override Task<Product> Execute(RecipeStorageContext context)
         {
             var product = await context.Products.FirstOrDefaultAsync(product => product.Id == this.Id);
+            // Added EntityState.Detached for check in Delete Handler that entity exists and if yes than execute Delete command
+            if (product != null)
+                context.Entry(product).State = EntityState.Detached;
             return product;
         }
     }
