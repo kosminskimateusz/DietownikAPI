@@ -1,11 +1,13 @@
 using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain.Users;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Dietownik.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/users")]
     public class UsersController : ApiControllerBase
