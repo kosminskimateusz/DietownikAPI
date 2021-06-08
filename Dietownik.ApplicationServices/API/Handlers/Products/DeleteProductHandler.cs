@@ -9,6 +9,7 @@ using Dietownik.DataAccess.CQRS.Commands.Products;
 using Dietownik.DataAccess.CQRS.Queries.Products;
 using Dietownik.DataAccess.Entities;
 using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Products
 {
@@ -18,7 +19,9 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
         private readonly IQueryExecutor queryExecutor;
         private readonly IMapper mapper;
 
-        public DeleteProductHandler(ICommandExecutor commandExecutor, IQueryExecutor queryExecutor, IMapper mapper)
+        public DeleteProductHandler(ICommandExecutor commandExecutor,
+        IQueryExecutor queryExecutor,
+        IMapper mapper)
         {
             this.commandExecutor = commandExecutor;
             this.queryExecutor = queryExecutor;
@@ -29,8 +32,8 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
         {
             var product = this.mapper.Map<Product>(request);
             var query = new GetProductByIdQuery() { Id = request.ProductId };
-            var productCheckExist = await queryExecutor.Execute(query);
-            if (productCheckExist == null)
+            var productGetById = await queryExecutor.Execute(query);
+            if (productGetById == null)
             {
                 return new DeleteProductResponse()
                 {

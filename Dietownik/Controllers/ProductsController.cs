@@ -44,8 +44,11 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
+                this.logger.LogInformation($"Add Product Failure");
+            else
                 this.logger.LogInformation($"Add Product:  Name:\t{request.Name}");
+
             return await this.HandleRequest<AddProductRequest, AddProductResponse>(request);
         }
 
@@ -54,8 +57,11 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateProduct(int id, [FromBody] UpdateProductRequest request)
         {
-            if (this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
+                this.logger.LogInformation("Update Product Failure");
+            else
                 this.logger.LogInformation($"Update Product with id: {id}");
+
             request.productId = id;
             return await this.HandleRequest<UpdateProductRequest, UpdateProductResponse>(request);
         }
@@ -65,7 +71,7 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
-            logger.LogInformation($"Delete Product with id: {id}");
+            // logger.LogInformation($"Delete Product with id: {id}");
             var request = new DeleteProductRequest()
             {
                 ProductId = id
