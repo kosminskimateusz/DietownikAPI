@@ -2,8 +2,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Products;
+using Dietownik.ApplicationServices.API.ErrorHandling;
+using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Products;
+using Dietownik.DataAccess.CQRS.Queries.Products;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Products
@@ -12,16 +15,29 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
     {
         private readonly IMapper mapper;
         private readonly ICommandExecutor commandExecutor;
+        private readonly IQueryExecutor queryExecutor;
 
-        public UpdateProductHandler(IMapper mapper, ICommandExecutor commandExecutor)
+        public UpdateProductHandler(IMapper mapper, ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
         {
             this.mapper = mapper;
             this.commandExecutor = commandExecutor;
+            this.queryExecutor = queryExecutor;
         }
 
         public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
             var updatedProduct = this.mapper.Map<DataAccess.Entities.Product>(request);
+
+            var query = new GetProductByIdQuery() { Id = request.productId };
+            var productGetById = await queryExecutor.Execute(query);
+            if (productGetById == null)
+            {
+                return new UpdateProductResponse()
+                {
+                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var command = new UpdateProductCommand()
             {
                 Parameter = updatedProduct

@@ -9,6 +9,7 @@ using Dietownik.DataAccess.CQRS.Queries.SavedRecipes;
 using Dietownik.DataAccess.Entities;
 using MediatR;
 using System.Linq;
+using Dietownik.ApplicationServices.API.ErrorHandling;
 
 namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
 {
@@ -27,6 +28,17 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
         public async Task<UpdateSavedRecipeResponse> Handle(UpdateSavedRecipeRequest request, CancellationToken cancellationToken)
         {
             var savedRecipe = this.mapper.Map<SavedRecipe>(request);
+
+            var query = new GetSavedRecipeByIdQuery() { Id = request.id };
+            var productGetById = await queryExecutor.Execute(query);
+            if (productGetById == null)
+            {
+                return new UpdateSavedRecipeResponse()
+                {
+                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                };
+            }
+
             var command = new UpdateSavedRecipeCommand()
             {
                 Parameter = savedRecipe
