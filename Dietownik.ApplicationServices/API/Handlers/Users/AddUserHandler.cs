@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,12 +28,19 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
         }
         public async Task<AddUserResponse> Handle(AddUserRequest request, CancellationToken cancellationToken)
         {
-            bool usernameExist = await UserExistCheck(request.Username);
+            bool usernameExist = await UsernameExistCheck(request.Username);
+            bool emailExist = await EmailExistCheck(request.Email);
 
             if (usernameExist)
                 return new AddUserResponse()
                 {
-                    Error = new Domain.ErrorModel("User with this username already exists.")
+                    Error = new Domain.ErrorModel("This username is already used.")
+                };
+
+            if (emailExist)
+                return new AddUserResponse()
+                {
+                    Error = new Domain.ErrorModel("This e-mail adress is already used.")
                 };
 
             var user = this.mapper.Map<User>(request);
@@ -48,13 +56,22 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
             };
         }
 
-        private async Task<bool> UserExistCheck(string username)
+        private async Task<bool> EmailExistCheck(string email)
         {
             var query = new GetUsersQuery();
             var users = await queryExecutor.Execute(query);
-            var checkingUser = users.Where(x => x.Username == username).FirstOrDefault();
+            var existingUser = users.Where(x => x.Email == email).FirstOrDefault();
 
-            return (checkingUser != null) ? true : false;
+            return (existingUser != null) ? true : false;
+        }
+
+        private async Task<bool> UsernameExistCheck(string username)
+        {
+            var query = new GetUsersQuery();
+            var users = await queryExecutor.Execute(query);
+            var existingUser = users.Where(x => x.Username == username).FirstOrDefault();
+
+            return (existingUser != null) ? true : false;
         }
     }
 }
