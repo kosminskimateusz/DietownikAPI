@@ -5,6 +5,7 @@ using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Recipes;
+using Dietownik.DataAccess.Entities;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Recipes
@@ -21,7 +22,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
         }
         public async Task<AddRecipeResponse> Handle(AddRecipeRequest request, CancellationToken cancellationToken)
         {
-            var recipe = this.mapper.Map<DataAccess.Entities.EntityRecipe>(request);
+            var recipe = this.mapper.Map<EntityRecipe>(request);
             var command = new AddRecipeCommand() { Parameter = recipe };
             var productFromDb = await this.commandExecutor.Execute(command);
 

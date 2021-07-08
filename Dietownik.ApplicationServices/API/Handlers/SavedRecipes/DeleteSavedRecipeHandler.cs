@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.SavedRecipes;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
@@ -45,7 +46,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
             var savedRecipeFromDb = await this.commandExecutor.Execute(command);
             return new DeleteSavedRecipeResponse()
             {
-                Data = this.mapper.Map<Domain.Models.ModelSavedRecipe>(savedRecipeFromDb)
+                Data = this.mapper.Map<ModelSavedRecipe>(savedRecipeFromDb)
             };
         }
     }

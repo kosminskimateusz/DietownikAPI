@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Recipes;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
@@ -47,7 +48,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
 
             return new UpdateRecipeResponse()
             {
-                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.ModelRecipe>(updatedRecipe)
+                Data = this.mapper.Map<ModelRecipe>(updatedRecipe)
             };
         }
     }

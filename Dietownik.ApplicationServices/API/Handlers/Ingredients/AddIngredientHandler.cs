@@ -2,6 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Ingredients;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Ingredients;
 using Dietownik.DataAccess.Entities;
@@ -29,7 +30,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Ingredients
             var ingredientFromDb = await this.commandExecutor.Execute(command);
             return new AddIngredientResponse()
             {
-                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.ModelIngredient>(ingredientFromDb)
+                Data = this.mapper.Map<ModelIngredient>(ingredientFromDb)
             };
         }
     }

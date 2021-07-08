@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Ingredients;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.DataAccess.Entities;
 
 namespace Dietownik.ApplicationServices.Mappings
@@ -9,7 +10,7 @@ namespace Dietownik.ApplicationServices.Mappings
     {
         public IngredientProfile()
         {
-            this.CreateMap<EntityIngredient, API.Domain.Models.ModelIngredient>()
+            this.CreateMap<EntityIngredient, ModelIngredient>()
             .ForMember(model => model.Id, opt => opt.MapFrom(entity => entity.Id))
             .ForMember(model => model.ProductId, opt => opt.MapFrom(entity => entity.ProductId))
             .ForMember(model => model.RecipeId, opt => opt.MapFrom(entity => entity.RecipeId))
@@ -20,7 +21,7 @@ namespace Dietownik.ApplicationServices.Mappings
             .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.ProductId))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth));
 
-            this.CreateMap<EntityIngredient, API.Domain.Models.ModelIngredient>()
+            this.CreateMap<EntityIngredient, ModelIngredient>()
             .ForMember(ingredient => ingredient.Id, option => option.MapFrom(entity => entity.Id))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(entity => entity.Weigth))
             .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.ProductId))

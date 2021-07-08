@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
@@ -45,7 +46,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new DeleteProductResponse()
             {
-                Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.ModelProduct>(productFromDb)
+                Data = this.mapper.Map<ModelProduct>(productFromDb)
             };
         }
     }

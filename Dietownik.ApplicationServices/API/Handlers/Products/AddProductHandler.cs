@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Products;
@@ -27,7 +28,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new AddProductResponse()
             {
-                Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.ModelProduct>(productFromDb)
+                Data = this.mapper.Map<ModelProduct>(productFromDb)
             };
         }
     }

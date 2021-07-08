@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
@@ -39,7 +40,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new GetProductByIdResponse()
             {
-                Data = this.mapper.Map<Domain.Models.ModelProduct>(product)
+                Data = this.mapper.Map<ModelProduct>(product)
             };
         }
     }

@@ -10,6 +10,7 @@ using Dietownik.DataAccess.Entities;
 using MediatR;
 using System.Linq;
 using Dietownik.ApplicationServices.API.ErrorHandling;
+using Dietownik.ApplicationServices.API.Domain.Models;
 
 namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
 {
@@ -46,7 +47,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
             var savedRecipeFromDb = await this.commandExecutor.Execute(command);
             return new UpdateSavedRecipeResponse()
             {
-                Data = this.mapper.Map<Domain.Models.ModelSavedRecipe>(savedRecipeFromDb)
+                Data = this.mapper.Map<ModelSavedRecipe>(savedRecipeFromDb)
             };
         }
     }

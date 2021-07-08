@@ -1,12 +1,14 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Products;
 using Dietownik.DataAccess.CQRS.Queries.Products;
+using Dietownik.DataAccess.Entities;
 using MediatR;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Products
@@ -26,7 +28,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
         public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
-            var updatedProduct = this.mapper.Map<DataAccess.Entities.EntityProduct>(request);
+            var updatedProduct = this.mapper.Map<EntityProduct>(request);
 
             var query = new GetProductByIdQuery() { Id = request.productId };
             var productGetById = await queryExecutor.Execute(query);
@@ -46,7 +48,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new UpdateProductResponse()
             {
-                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.ModelProduct>(updatedProduct)
+                Data = this.mapper.Map<ModelProduct>(updatedProduct)
             };
         }
     }

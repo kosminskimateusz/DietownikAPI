@@ -1,4 +1,5 @@
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.SavedRecipes;
 using Dietownik.DataAccess.Entities;
 
@@ -8,7 +9,7 @@ namespace Dietownik.ApplicationServices.Mappings
     {
         public SavedRecipeProfile()
         {
-            this.CreateMap<EntitySavedRecipe, API.Domain.Models.ModelSavedRecipe>()
+            this.CreateMap<EntitySavedRecipe, ModelSavedRecipe>()
             .ForMember(model => model.Id, option => option.MapFrom(entity => entity.Id))
             .ForMember(model => model.PreferedKcal, option => option.MapFrom(entity => entity.PreferedKcal))
             .ForMember(model => model.RecipeId, option => option.MapFrom(entity => entity.RecipeId))

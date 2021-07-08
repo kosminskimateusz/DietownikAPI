@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.SavedRecipes;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.SavedRecipes;
@@ -30,7 +31,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
 
             return new AddSavedRecipeResponse()
             {
-                Data = this.mapper.Map<API.Domain.Models.ModelSavedRecipe>(savedRecipeFromDb)
+                Data = this.mapper.Map<ModelSavedRecipe>(savedRecipeFromDb)
             };
         }
     }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Users;
 using Dietownik.ApplicationServices.API.ErrorHandling;
 using Dietownik.DataAccess;
@@ -52,7 +53,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
 
             return new AddUserResponse()
             {
-                Data = this.mapper.Map<Domain.Models.ModelUser>(userFromDb)
+                Data = this.mapper.Map<ModelUser>(userFromDb)
             };
         }
 

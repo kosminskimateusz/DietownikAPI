@@ -1,4 +1,5 @@
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Users;
 using Dietownik.DataAccess.Entities;
 
@@ -8,7 +9,7 @@ namespace Dietownik.ApplicationServices.Mappings
     {
         public UserProfile()
         {
-            this.CreateMap<EntityUser, API.Domain.Models.ModelUser>()
+            this.CreateMap<EntityUser, ModelUser>()
             .ForMember(model => model.Id, opt => opt.MapFrom(entity => entity.Id))
             .ForMember(model => model.Username, opt => opt.MapFrom(entity => entity.Username))
             .ForMember(model => model.Email, opt => opt.MapFrom(entity => entity.Email))
