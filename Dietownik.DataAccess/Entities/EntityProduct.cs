@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Dietownik.DataAccess.Entities
 {
-    public class Product : EntityBase
+    public class EntityProduct : EntityBase
     {
         [Required]
         [NotNull]
@@ -28,7 +28,7 @@ namespace Dietownik.DataAccess.Entities
         [Column(TypeName = "decimal(18,1)")]
         public decimal Proteins { get; set; }
 
-        public List<Ingredient> Ingredients { get; set; }
+        public List<EntityIngredient> Ingredients { get; set; }
 
     }
 }

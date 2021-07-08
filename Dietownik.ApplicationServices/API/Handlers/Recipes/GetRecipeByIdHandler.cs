@@ -38,7 +38,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             }
             return new GetRecipeByIdResponse()
             {
-                Data = this.mapper.Map<Recipe>(recipe)
+                Data = this.mapper.Map<ModelRecipe>(recipe)
             };
         }
     }

@@ -40,7 +40,8 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddSavedRecipe([FromBody] AddSavedRecipeRequest request)
         {
-            logger.LogInformation($"Add SavedRecipe to user : {request.UserId}");
+            if (this.ModelState.IsValid)
+                logger.LogInformation($"Add SavedRecipe to user : {request.UserId}");
 
             return await this.HandleRequest<AddSavedRecipeRequest, AddSavedRecipeResponse>(request);
         }
@@ -50,7 +51,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateSavedRecipe([FromBody] UpdateSavedRecipeRequest request, [FromRoute] int id)
         {
-            logger.LogInformation($"Update SavedRecipe id: {id}");
+            if (this.ModelState.IsValid)
+                logger.LogInformation($"Update SavedRecipe id: {id}");
 
             request.id = id;
             return await this.HandleRequest<UpdateSavedRecipeRequest, UpdateSavedRecipeResponse>(request);
@@ -61,7 +63,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteSavedRecipe([FromRoute] int id)
         {
-            logger.LogInformation($"Update SavedRecipe id: {id}");
+            if (this.ModelState.IsValid)
+                logger.LogInformation($"Delete SavedRecipe id: {id}");
 
             var request = new DeleteSavedRecipeRequest()
             {

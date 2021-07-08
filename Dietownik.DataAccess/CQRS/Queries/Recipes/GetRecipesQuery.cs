@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dietownik.DataAccess.CQRS.Queries.Recipes
 {
-    public class GetRecipesQuery : QueryBase<List<Recipe>>
+    public class GetRecipesQuery : QueryBase<List<EntityRecipe>>
     {
         public string SearchPhrase { get; set; }
-        public override Task<List<Recipe>> Execute(RecipeStorageContext context)
+        public override Task<List<EntityRecipe>> Execute(RecipeStorageContext context)
         {
 
             if (this.SearchPhrase == null)

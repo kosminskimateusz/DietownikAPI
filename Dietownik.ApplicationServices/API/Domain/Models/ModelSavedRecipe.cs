@@ -2,7 +2,7 @@ using System;
 
 namespace Dietownik.ApplicationServices.API.Domain.Models
 {
-    public class SavedRecipe : ModelBase
+    public class ModelSavedRecipe : ModelBase
     {
         public decimal PreferedKcal { get; set; }
         public int RecipeId { get; set; }

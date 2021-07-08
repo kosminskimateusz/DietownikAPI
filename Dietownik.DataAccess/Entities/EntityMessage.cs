@@ -3,7 +3,7 @@
 
 // namespace Dietownik.DataAccess.Entities
 // {
-//     public class Message : EntityBase
+//     public class EntityMessage : EntityBase
 //     {
 //         [Required]
 //         [NotNull]

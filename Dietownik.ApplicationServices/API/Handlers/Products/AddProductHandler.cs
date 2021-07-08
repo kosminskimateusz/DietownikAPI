@@ -21,13 +21,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
         }
         public async Task<AddProductResponse> Handle(AddProductRequest request, CancellationToken cancellationToken)
         {
-            var product = this.mapper.Map<Product>(request);
+            var product = this.mapper.Map<EntityProduct>(request);
             var command = new AddProductCommand() { Parameter = product };
             var productFromDb = await this.commandExecutor.Execute(command);
 
             return new AddProductResponse()
             {
-                Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.Product>(productFromDb)
+                Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.ModelProduct>(productFromDb)
             };
         }
     }

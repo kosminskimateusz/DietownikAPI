@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Dietownik.DataAccess.Entities
 {
-    public class Ingredient : EntityBase
+    public class EntityIngredient : EntityBase
     {
         [Required]
         [NotNull]

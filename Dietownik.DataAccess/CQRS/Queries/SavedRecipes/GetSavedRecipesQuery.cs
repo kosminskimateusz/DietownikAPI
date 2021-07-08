@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dietownik.DataAccess.CQRS.Queries.SavedRecipes
 {
-    public class GetSavedRecipesQuery : QueryBase<List<SavedRecipe>>
+    public class GetSavedRecipesQuery : QueryBase<List<EntitySavedRecipe>>
     {
         public int UserId { get; set; }
         public DateTime Date { get; set; }
-        public override Task<List<SavedRecipe>> Execute(RecipeStorageContext context)
+        public override Task<List<EntitySavedRecipe>> Execute(RecipeStorageContext context)
         {
             if (this.UserId != 0 && this.Date == (new DateTime()))
                 return context.SavedRecipes.Where(recipe => recipe.UserId == this.UserId)

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Dietownik.ApplicationServices.API.Domain.Models
 {
-    public class User : ModelBase
+    public class ModelUser : ModelBase
     {
         public string Username { get; set; }
         public string Email { get; set; }

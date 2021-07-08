@@ -40,7 +40,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
             }
             return new GetRecipesResponse()
             {
-                Data = this.mapper.Map<List<Recipe>>(recipes)
+                Data = this.mapper.Map<List<ModelRecipe>>(recipes)
             };
         }
     }

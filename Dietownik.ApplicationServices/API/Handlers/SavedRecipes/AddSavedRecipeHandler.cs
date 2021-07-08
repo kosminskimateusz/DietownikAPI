@@ -21,7 +21,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
         }
         public async Task<AddSavedRecipeResponse> Handle(AddSavedRecipeRequest request, CancellationToken cancellationToken)
         {
-            var savedRecipe = this.mapper.Map<SavedRecipe>(request);
+            var savedRecipe = this.mapper.Map<EntitySavedRecipe>(request);
             var command = new AddSavedRecipeCommand()
             {
                 Parameter = savedRecipe
@@ -30,7 +30,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
 
             return new AddSavedRecipeResponse()
             {
-                Data = this.mapper.Map<API.Domain.Models.SavedRecipe>(savedRecipeFromDb)
+                Data = this.mapper.Map<API.Domain.Models.ModelSavedRecipe>(savedRecipeFromDb)
             };
         }
     }

@@ -31,7 +31,8 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddIngredient([FromBody] AddIngredientRequest request)
         {
-            this.logger.LogInformation($"Add Ingredient on ProductId: {request.ProductId} to RecipeId: {request.RecipeId}");
+            if (this.ModelState.IsValid)
+                this.logger.LogInformation($"Add Ingredient on ProductId: {request.ProductId} to RecipeId: {request.RecipeId}");
             return await this.HandleRequest<AddIngredientRequest, AddIngredientResponse>(request);
         }
 

@@ -21,13 +21,13 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
         }
         public async Task<AddRecipeResponse> Handle(AddRecipeRequest request, CancellationToken cancellationToken)
         {
-            var recipe = this.mapper.Map<DataAccess.Entities.Recipe>(request);
+            var recipe = this.mapper.Map<DataAccess.Entities.EntityRecipe>(request);
             var command = new AddRecipeCommand() { Parameter = recipe };
             var productFromDb = await this.commandExecutor.Execute(command);
 
             return new AddRecipeResponse()
             {
-                Data = this.mapper.Map<Recipe>(productFromDb)
+                Data = this.mapper.Map<ModelRecipe>(productFromDb)
             };
         }
     }

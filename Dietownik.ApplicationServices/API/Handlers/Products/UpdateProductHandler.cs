@@ -26,7 +26,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
         public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
-            var updatedProduct = this.mapper.Map<DataAccess.Entities.Product>(request);
+            var updatedProduct = this.mapper.Map<DataAccess.Entities.EntityProduct>(request);
 
             var query = new GetProductByIdQuery() { Id = request.productId };
             var productGetById = await queryExecutor.Execute(query);
@@ -46,7 +46,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new UpdateProductResponse()
             {
-                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Product>(updatedProduct)
+                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.ModelProduct>(updatedProduct)
             };
         }
     }

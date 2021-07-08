@@ -39,7 +39,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Ingredients
             }
             return new GetIngredientsResponse()
             {
-                Data = this.mapper.Map<List<Ingredient>>(ingredients)
+                Data = this.mapper.Map<List<ModelIngredient>>(ingredients)
             };
         }
     }

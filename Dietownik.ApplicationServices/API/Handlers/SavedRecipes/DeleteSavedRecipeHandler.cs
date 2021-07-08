@@ -26,7 +26,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
         }
         public async Task<DeleteSavedRecipeResponse> Handle(DeleteSavedRecipeRequest request, CancellationToken cancellationToken)
         {
-            var savedRecipe = this.mapper.Map<SavedRecipe>(request);
+            var savedRecipe = this.mapper.Map<EntitySavedRecipe>(request);
 
             var query = new GetSavedRecipeByIdQuery() { Id = request.SavedRecipeId };
             var productGetById = await queryExecutor.Execute(query);
@@ -45,7 +45,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
             var savedRecipeFromDb = await this.commandExecutor.Execute(command);
             return new DeleteSavedRecipeResponse()
             {
-                Data = this.mapper.Map<Domain.Models.SavedRecipe>(savedRecipeFromDb)
+                Data = this.mapper.Map<Domain.Models.ModelSavedRecipe>(savedRecipeFromDb)
             };
         }
     }

@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dietownik.DataAccess.CQRS.Queries.Users
 {
-    public class GetUsersQuery : QueryBase<List<User>>
+    public class GetUsersQuery : QueryBase<List<EntityUser>>
     {
         public string SearchUsername { get; set; }
-        public override System.Threading.Tasks.Task<List<User>> Execute(RecipeStorageContext context)
+        public override System.Threading.Tasks.Task<List<EntityUser>> Execute(RecipeStorageContext context)
         {
             if (this.SearchUsername == null)
             {

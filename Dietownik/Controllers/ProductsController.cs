@@ -11,7 +11,6 @@ namespace Dietownik.Controllers
     public class ProductsController : ApiControllerBase
     {
         private readonly ILogger<ProductsController> logger;
-
         public ProductsController(IMediator mediator, ILogger<ProductsController> logger) : base(mediator, logger)
         {
             this.logger = logger;
@@ -71,7 +70,9 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
-            // logger.LogInformation($"Delete Product with id: {id}");
+            if (this.ModelState.IsValid)
+                logger.LogInformation($"Delete Product with id: {id}");
+
             var request = new DeleteProductRequest()
             {
                 ProductId = id

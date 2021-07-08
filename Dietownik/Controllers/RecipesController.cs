@@ -37,7 +37,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetRecipeById([FromRoute] int id)
         {
-            this.logger.LogInformation($"Get Recipe with id: {id}");
+            if (this.ModelState.IsValid)
+                this.logger.LogInformation($"Get Recipe with id: {id}");
             var request = new GetRecipeByIdRequest()
             {
                 RecipeId = id
@@ -50,7 +51,8 @@ namespace Dietownik.Controllers
         [Route("")]
         public async Task<IActionResult> AddRecipe([FromBody] AddRecipeRequest request)
         {
-            this.logger.LogInformation($"Add Recipe {request.Name}");
+            if (this.ModelState.IsValid)
+                this.logger.LogInformation($"Add Recipe {request.Name}");
             return await this.HandleRequest<AddRecipeRequest, AddRecipeResponse>(request);
         }
 
@@ -59,7 +61,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateRecipe([FromRoute] int id, [FromBody] UpdateRecipeRequest request)
         {
-            this.logger.LogInformation($"Update Recipe with id: {id}");
+            if (this.ModelState.IsValid)
+                this.logger.LogInformation($"Update Recipe with id: {id}");
             request.recipeId = id;
             return await this.HandleRequest<UpdateRecipeRequest, UpdateRecipeResponse>(request);
         }
@@ -69,7 +72,8 @@ namespace Dietownik.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteRecipe([FromRoute] int id)
         {
-            logger.LogInformation($"Delete Recipe with id: {id}");
+            if (this.ModelState.IsValid)
+                logger.LogInformation($"Delete Recipe with id: {id}");
             var request = new DeleteRecipeRequest()
             {
                 RecipeId = id

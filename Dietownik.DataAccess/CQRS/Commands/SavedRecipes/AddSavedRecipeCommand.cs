@@ -3,9 +3,9 @@ using Dietownik.DataAccess.Entities;
 
 namespace Dietownik.DataAccess.CQRS.Commands.SavedRecipes
 {
-    public class AddSavedRecipeCommand : CommandBase<SavedRecipe, SavedRecipe>
+    public class AddSavedRecipeCommand : CommandBase<EntitySavedRecipe, EntitySavedRecipe>
     {
-        public async override Task<SavedRecipe> Execute(RecipeStorageContext context)
+        public async override Task<EntitySavedRecipe> Execute(RecipeStorageContext context)
         {
             await context.SavedRecipes.AddAsync(this.Parameter);
             await context.SaveChangesAsync();

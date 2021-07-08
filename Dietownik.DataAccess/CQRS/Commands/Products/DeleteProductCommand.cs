@@ -3,9 +3,9 @@ using Dietownik.DataAccess.Entities;
 
 namespace Dietownik.DataAccess.CQRS.Commands.Products
 {
-    public class DeleteProductCommand : CommandBase<Product, Product>
+    public class DeleteProductCommand : CommandBase<EntityProduct, EntityProduct>
     {
-        public override async Task<Product> Execute(RecipeStorageContext context)
+        public override async Task<EntityProduct> Execute(RecipeStorageContext context)
         {
             context.Products.Remove(this.Parameter);
             await context.SaveChangesAsync();

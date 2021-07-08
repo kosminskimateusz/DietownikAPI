@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Dietownik.DataAccess.Entities
 {
-    public class User : EntityBase
+    public class EntityUser : EntityBase
     {
         [Required]
         [NotNull]
@@ -26,7 +26,7 @@ namespace Dietownik.DataAccess.Entities
 
         // public UserProfile UserProfile { get; set; }
 
-        // public List<Message> Messages { get; set; }
-        public List<SavedRecipe> SavedRecipes { get; set; }
+        // public List<EntityMessage> Messages { get; set; }
+        public List<EntitySavedRecipe> SavedRecipes { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
 
             return new GetUsersResponse()
             {
-                Data = this.mapper.Map<List<User>>(users)
+                Data = this.mapper.Map<List<ModelUser>>(users)
             };
         }
     }

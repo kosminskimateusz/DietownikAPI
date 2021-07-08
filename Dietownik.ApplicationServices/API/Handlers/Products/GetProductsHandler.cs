@@ -40,7 +40,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new GetProductsResponse()
             {
-                Data = this.mapper.Map<List<Product>>(products)
+                Data = this.mapper.Map<List<ModelProduct>>(products)
             };
         }
     }

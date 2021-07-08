@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dietownik.DataAccess.CQRS.Queries.SavedRecipes
 {
-    public class GetSavedRecipeByIdQuery : QueryBase<SavedRecipe>
+    public class GetSavedRecipeByIdQuery : QueryBase<EntitySavedRecipe>
     {
         public int Id { get; set; }
-        public override async Task<SavedRecipe> Execute(RecipeStorageContext context)
+        public override async Task<EntitySavedRecipe> Execute(RecipeStorageContext context)
         {
             var savedRecipe = await context.SavedRecipes.FirstOrDefaultAsync(savedRecipe => savedRecipe.Id == this.Id);
             // Added EntityState.Detached for check in Delete Handler that entity exists and if yes than execute Delete command

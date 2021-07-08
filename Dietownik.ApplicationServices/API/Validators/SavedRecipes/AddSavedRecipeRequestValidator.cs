@@ -7,7 +7,8 @@ namespace Dietownik.ApplicationServices.API.Validators
     {
         public AddSavedRecipeRequestValidator()
         {
-            this.RuleFor(x => x.PreferedKcal).GreaterThanOrEqualTo(50);
+            this.RuleFor(x => x.PreferedKcal)
+            .GreaterThanOrEqualTo(50);
             this.RuleFor(x => x.RecipeId).GreaterThanOrEqualTo(1);
             this.RuleFor(x => x.UserId).GreaterThanOrEqualTo(1);
         }

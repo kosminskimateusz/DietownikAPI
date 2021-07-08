@@ -41,7 +41,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.SavedRecipes
 
             return new GetSavedRecipesResponse()
             {
-                Data = this.mapper.Map<List<SavedRecipe>>(savedRecipes)
+                Data = this.mapper.Map<List<ModelSavedRecipe>>(savedRecipes)
             };
         }
     }

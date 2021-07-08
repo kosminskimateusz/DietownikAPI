@@ -30,7 +30,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
         public async Task<DeleteProductResponse> Handle(DeleteProductRequest request, CancellationToken cancellationToken)
         {
-            var product = this.mapper.Map<Product>(request);
+            var product = this.mapper.Map<EntityProduct>(request);
             var query = new GetProductByIdQuery() { Id = request.ProductId };
             var productGetById = await queryExecutor.Execute(query);
             if (productGetById == null)
@@ -45,7 +45,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new DeleteProductResponse()
             {
-                Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.Product>(productFromDb)
+                Data = this.mapper.Map<Dietownik.ApplicationServices.API.Domain.Models.ModelProduct>(productFromDb)
             };
         }
     }

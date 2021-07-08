@@ -43,7 +43,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
                     Error = new Domain.ErrorModel("This e-mail adress is already used.")
                 };
 
-            var user = this.mapper.Map<User>(request);
+            var user = this.mapper.Map<EntityUser>(request);
             var command = new AddUserCommand()
             {
                 Parameter = user
@@ -52,7 +52,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
 
             return new AddUserResponse()
             {
-                Data = this.mapper.Map<Domain.Models.User>(userFromDb)
+                Data = this.mapper.Map<Domain.Models.ModelUser>(userFromDb)
             };
         }
 

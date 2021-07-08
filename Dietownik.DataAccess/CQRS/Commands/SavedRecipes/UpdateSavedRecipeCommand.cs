@@ -4,9 +4,9 @@ using Dietownik.DataAccess.Entities;
 
 namespace Dietownik.DataAccess.CQRS.Commands.SavedRecipes
 {
-    public class UpdateSavedRecipeCommand : CommandBase<SavedRecipe, SavedRecipe>
+    public class UpdateSavedRecipeCommand : CommandBase<EntitySavedRecipe, EntitySavedRecipe>
     {
-        public async override Task<SavedRecipe> Execute(RecipeStorageContext context)
+        public async override Task<EntitySavedRecipe> Execute(RecipeStorageContext context)
         {
             var result = context.SavedRecipes.SingleOrDefault(recipe => recipe.Id == this.Parameter.Id);
             result.PreferedKcal = this.Parameter.PreferedKcal;

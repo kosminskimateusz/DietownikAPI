@@ -27,7 +27,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
 
         public async Task<UpdateRecipeResponse> Handle(UpdateRecipeRequest request, CancellationToken cancellationToken)
         {
-            var recipe = this.mapper.Map<Recipe>(request);
+            var recipe = this.mapper.Map<EntityRecipe>(request);
             var query = new GetRecipeByIdQuery() { Id = request.recipeId };
             var productGetById = await queryExecutor.Execute(query);
             if (productGetById == null)
@@ -47,7 +47,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Recipes
 
             return new UpdateRecipeResponse()
             {
-                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.Recipe>(updatedRecipe)
+                Data = this.mapper.Map<ApplicationServices.API.Domain.Models.ModelRecipe>(updatedRecipe)
             };
         }
     }

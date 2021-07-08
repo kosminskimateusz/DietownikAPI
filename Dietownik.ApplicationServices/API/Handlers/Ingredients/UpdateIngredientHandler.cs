@@ -21,7 +21,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Ingredients
         }
         public async Task<UpdateIngredientResponse> Handle(UpdateIngredientRequest request, CancellationToken cancellationToken)
         {
-            var ingredient = this.mapper.Map<Ingredient>(request);
+            var ingredient = this.mapper.Map<EntityIngredient>(request);
             var command = new UpdateIngredientCommand()
             {
                 Parameter = ingredient
@@ -29,7 +29,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Ingredients
             var ingredientFromDb = await this.commandExecutor.Execute(command);
             return new UpdateIngredientResponse()
             {
-                Data = this.mapper.Map<Domain.Models.Ingredient>(ingredientFromDb)
+                Data = this.mapper.Map<Domain.Models.ModelIngredient>(ingredientFromDb)
             };
         }
     }

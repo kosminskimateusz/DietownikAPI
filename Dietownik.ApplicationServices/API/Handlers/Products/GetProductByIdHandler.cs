@@ -39,7 +39,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
 
             return new GetProductByIdResponse()
             {
-                Data = this.mapper.Map<Domain.Models.Product>(product)
+                Data = this.mapper.Map<Domain.Models.ModelProduct>(product)
             };
         }
     }
