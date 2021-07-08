@@ -19,6 +19,8 @@ using Dietownik.ApplicationServices.Mappings;
 using Dietownik.DataAccess.CQRS;
 using FluentValidation.AspNetCore;
 using Dietownik.ApplicationServices.API.Validators;
+using Microsoft.AspNetCore.Authentication;
+using MagazynEdu.Authentication;
 
 namespace Dietownik
 {
@@ -41,6 +43,8 @@ namespace Dietownik
                 options.SuppressModelStateInvalidFilter = true;
             });
 
+            services.AddAuthentication("BasicAuthentication")
+            .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 
             services.AddMvcCore()
             .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AddProductRequestValidator>());
@@ -81,6 +85,7 @@ namespace Dietownik
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

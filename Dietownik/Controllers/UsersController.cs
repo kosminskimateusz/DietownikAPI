@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Dietownik.Controllers
 {
 
+    [Authorize]
     [ApiController]
     [Route("api/users")]
     public class UsersController : ApiControllerBase
@@ -32,7 +33,9 @@ namespace Dietownik.Controllers
 
             return await this.HandleRequest<GetUsersRequest, GetUsersResponse>(request);
         }
+
         // POST api/users
+        [AllowAnonymous]
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> AddUser([FromBody] AddUserRequest request)

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Net;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.ApplicationServices.API.ErrorHandling;
@@ -38,6 +39,8 @@ namespace Dietownik.Controllers
                     .Where(x => x.Value.Errors.Any())
                     .Select(x => new { property = x.Key, errors = x.Value.Errors }));
             }
+
+            var userName = this.User.FindFirstValue(ClaimTypes.Name);
 
             var response = await this.mediator.Send(request);
 

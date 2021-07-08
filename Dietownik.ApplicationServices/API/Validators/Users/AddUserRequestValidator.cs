@@ -15,7 +15,7 @@ namespace Dietownik.ApplicationServices.API.Validators
         {
             var regexString = RegexToString();
             this.RuleFor(x => x.Username).NotEmpty()
-                .MinimumLength(6)
+                .MinimumLength(5)
                 .MaximumLength(50)
                 .Must(x => !x.Contains(' ')).WithMessage("Your username can not contains white spaces.")
                 .NotEqual(x => x.Password).WithMessage("'Username' can not be equal to 'Password'");
