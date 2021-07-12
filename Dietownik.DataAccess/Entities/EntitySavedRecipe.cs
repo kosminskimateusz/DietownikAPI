@@ -14,11 +14,11 @@ namespace Dietownik.DataAccess.Entities
 
         [Required]
         [NotNull]
-        public int RecipeId { get; set; }
+        public int EntityRecipeId { get; set; }
 
         [Required]
         [NotNull]
-        public int UserId { get; set; }
+        public int EntityUserId { get; set; }
 
         [Required]
         [NotNull]

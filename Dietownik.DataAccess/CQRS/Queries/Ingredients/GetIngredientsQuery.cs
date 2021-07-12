@@ -17,7 +17,7 @@ namespace Dietownik.DataAccess.CQRS.Queries.Ingredients
                 .ToListAsync();
             }
             return context.Ingredients
-            .Where(ingredient => ingredient.RecipeId.Equals(this.RecipeIdSearch))
+            .Where(ingredient => ingredient.EntityRecipeId.Equals(this.RecipeIdSearch))
             .ToListAsync();
         }
     }

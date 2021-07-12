@@ -12,19 +12,19 @@ namespace Dietownik.ApplicationServices.Mappings
         {
             this.CreateMap<EntityIngredient, ModelIngredient>()
             .ForMember(model => model.Id, opt => opt.MapFrom(entity => entity.Id))
-            .ForMember(model => model.ProductId, opt => opt.MapFrom(entity => entity.ProductId))
-            .ForMember(model => model.RecipeId, opt => opt.MapFrom(entity => entity.RecipeId))
+            .ForMember(model => model.ProductId, opt => opt.MapFrom(entity => entity.EntityProductId))
+            .ForMember(model => model.RecipeId, opt => opt.MapFrom(entity => entity.EntityRecipeId))
             .ForMember(model => model.Weigth, opt => opt.MapFrom(entity => entity.Weigth));
 
             this.CreateMap<AddIngredientRequest, EntityIngredient>()
-            .ForMember(ingredient => ingredient.RecipeId, option => option.MapFrom(request => request.RecipeId))
-            .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.ProductId))
+            .ForMember(ingredient => ingredient.EntityRecipeId, option => option.MapFrom(request => request.RecipeId))
+            .ForMember(ingredient => ingredient.EntityProductId, option => option.MapFrom(request => request.ProductId))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth));
 
             this.CreateMap<EntityIngredient, ModelIngredient>()
             .ForMember(ingredient => ingredient.Id, option => option.MapFrom(entity => entity.Id))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(entity => entity.Weigth))
-            .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.ProductId))
+            .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.EntityProductId))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth));
 
             this.CreateMap<DeleteIngredientRequest, EntityIngredient>()
@@ -32,9 +32,9 @@ namespace Dietownik.ApplicationServices.Mappings
 
             this.CreateMap<UpdateIngredientRequest, EntityIngredient>()
             .ForMember(ingredient => ingredient.Id, option => option.MapFrom(request => request.ingredientId))
-            .ForMember(ingredient => ingredient.RecipeId, option => option.MapFrom(request => request.RecipeId))
+            .ForMember(ingredient => ingredient.EntityRecipeId, option => option.MapFrom(request => request.RecipeId))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth))
-            .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.ProductId));
+            .ForMember(ingredient => ingredient.EntityProductId, option => option.MapFrom(request => request.ProductId));
         }
     }
 }

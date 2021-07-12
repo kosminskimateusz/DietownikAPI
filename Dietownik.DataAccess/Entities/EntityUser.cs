@@ -27,6 +27,6 @@ namespace Dietownik.DataAccess.Entities
         // public UserProfile UserProfile { get; set; }
 
         // public List<EntityMessage> Messages { get; set; }
-        public List<EntitySavedRecipe> SavedRecipes { get; set; }
+        public List<EntitySavedRecipe> EntitySavedRecipes { get; set; }
     }
 }

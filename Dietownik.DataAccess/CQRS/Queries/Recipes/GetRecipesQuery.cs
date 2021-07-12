@@ -14,12 +14,12 @@ namespace Dietownik.DataAccess.CQRS.Queries.Recipes
 
             if (this.SearchPhrase == null)
                 return context.Recipes
-                .Include(x => x.Ingredients)
+                .Include(x => x.EntityIngredients)
                 .ToListAsync();
 
             return context.Recipes
             .Where(recipe => recipe.Name.Contains(this.SearchPhrase))
-            .Include(x => x.Ingredients)
+            .Include(x => x.EntityIngredients)
             .ToListAsync();
         }
     }

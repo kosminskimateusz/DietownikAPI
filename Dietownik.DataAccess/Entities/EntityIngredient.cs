@@ -13,10 +13,10 @@ namespace Dietownik.DataAccess.Entities
 
         [Required]
         [NotNull]
-        public int ProductId { get; set; }
+        public int EntityProductId { get; set; }
 
         [Required]
         [NotNull]
-        public int RecipeId { get; set; }
+        public int EntityRecipeId { get; set; }
     }
 }

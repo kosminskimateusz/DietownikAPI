@@ -14,10 +14,10 @@ namespace Dietownik.DataAccess.CQRS.Queries.SavedRecipes
         public override Task<List<EntitySavedRecipe>> Execute(RecipeStorageContext context)
         {
             if (this.UserId != 0 && this.Date == (new DateTime()))
-                return context.SavedRecipes.Where(recipe => recipe.UserId == this.UserId)
+                return context.SavedRecipes.Where(recipe => recipe.EntityUserId == this.UserId)
                 .ToListAsync();
             else if (this.UserId != 0 && this.Date != (new DateTime()))
-                return context.SavedRecipes.Where(recipe => recipe.UserId == this.UserId && recipe.Date == this.Date)
+                return context.SavedRecipes.Where(recipe => recipe.EntityUserId == this.UserId && recipe.Date == this.Date)
                 .ToListAsync();
             else
                 return context.SavedRecipes.ToListAsync();

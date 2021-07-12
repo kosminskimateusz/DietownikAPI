@@ -28,7 +28,7 @@ namespace Dietownik.DataAccess.Entities
         [Column(TypeName = "decimal(18,1)")]
         public decimal Proteins { get; set; }
 
-        public List<EntityIngredient> Ingredients { get; set; }
+        public List<EntityIngredient> EntityIngredients { get; set; }
 
     }
 }
