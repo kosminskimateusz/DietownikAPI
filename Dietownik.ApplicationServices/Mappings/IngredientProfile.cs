@@ -14,17 +14,12 @@ namespace Dietownik.ApplicationServices.Mappings
             .ForMember(model => model.Id, opt => opt.MapFrom(entity => entity.Id))
             .ForMember(model => model.ProductId, opt => opt.MapFrom(entity => entity.EntityProductId))
             .ForMember(model => model.RecipeId, opt => opt.MapFrom(entity => entity.EntityRecipeId))
-            .ForMember(model => model.Weigth, opt => opt.MapFrom(entity => entity.Weigth));
+            .ForMember(model => model.Weigth, opt => opt.MapFrom(entity => entity.Weigth))
+            .ForMember(model => model.Name, opt => opt.MapFrom(entity => entity.Product.Name));
 
             this.CreateMap<AddIngredientRequest, EntityIngredient>()
             .ForMember(ingredient => ingredient.EntityRecipeId, option => option.MapFrom(request => request.RecipeId))
             .ForMember(ingredient => ingredient.EntityProductId, option => option.MapFrom(request => request.ProductId))
-            .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth));
-
-            this.CreateMap<EntityIngredient, ModelIngredient>()
-            .ForMember(ingredient => ingredient.Id, option => option.MapFrom(entity => entity.Id))
-            .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(entity => entity.Weigth))
-            .ForMember(ingredient => ingredient.ProductId, option => option.MapFrom(request => request.EntityProductId))
             .ForMember(ingredient => ingredient.Weigth, option => option.MapFrom(request => request.Weigth));
 
             this.CreateMap<DeleteIngredientRequest, EntityIngredient>()

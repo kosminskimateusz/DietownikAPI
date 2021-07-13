@@ -14,7 +14,7 @@ namespace Dietownik.ApplicationServices.Mappings
             this.CreateMap<EntityRecipe, ModelRecipe>()
             .ForMember(model => model.Id, option => option.MapFrom(entity => entity.Id))
             .ForMember(model => model.Name, option => option.MapFrom(entity => entity.Name))
-            .ForMember(model => model.Ingredients, option => option.MapFrom(entity => entity.EntityIngredients != null ? entity.EntityIngredients : new List<EntityIngredient>()));
+            .ForMember(model => model.Ingredients, option => option.MapFrom(entity => entity.EntityIngredients.Select(x => x.Product.Name) != null ? entity.EntityIngredients : new List<EntityIngredient>()));
 
             this.CreateMap<AddRecipeRequest, EntityRecipe>()
             .ForMember(entity => entity.Name, option => option.MapFrom(request => request.Name));

@@ -18,5 +18,6 @@ namespace Dietownik.DataAccess.Entities
         [Required]
         [NotNull]
         public int EntityRecipeId { get; set; }
+        public EntityProduct Product { get; set; }
     }
 }
