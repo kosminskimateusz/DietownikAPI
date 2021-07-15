@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Dietownik.DataAccess.CQRS.Queries;
 
-namespace Dietownik.DataAccess
+namespace Dietownik.DataAccess.CQRS
 {
     public class QueryExecutor : IQueryExecutor
     {

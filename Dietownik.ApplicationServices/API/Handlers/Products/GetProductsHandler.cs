@@ -5,7 +5,7 @@ using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.ApplicationServices.API.ErrorHandling;
-using Dietownik.DataAccess;
+using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Queries.Products;
 using MediatR;
 
