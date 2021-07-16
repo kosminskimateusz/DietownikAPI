@@ -1,16 +1,15 @@
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Dietownik.ApplicationServices.API.Domain;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Products;
 using Dietownik.ApplicationServices.API.ErrorHandling;
-using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Products;
 using Dietownik.DataAccess.CQRS.Queries.Products;
 using Dietownik.DataAccess.Entities;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Dietownik.ApplicationServices.API.Handlers.Products
 {
@@ -38,7 +37,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Products
             {
                 return new DeleteProductResponse()
                 {
-                    Error = new Domain.ErrorModel(ErrorType.NotFound)
+                    Error = new ErrorModel(ErrorType.NotFound)
                 };
             }
             var command = new DeleteProductCommand() { Parameter = product };
