@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "dd4abdf3-79b6-447a-97ec-acbdb9a15855": {
+      "ProjectGuid": "dd4abdf3-79b6-447a-97ec-acbdb9a15855",
+      "DisplayName": "Dietownik",
+      "ColorIndex": 0
+    },
+    "86ecb214-47ad-4a39-ac5b-0e99fc77a555": {
+      "ProjectGuid": "86ecb214-47ad-4a39-ac5b-0e99fc77a555",
+      "DisplayName": "Dietownik.DataAccess",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
