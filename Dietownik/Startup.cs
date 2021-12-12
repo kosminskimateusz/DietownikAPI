@@ -20,7 +20,8 @@ using Dietownik.DataAccess.CQRS;
 using FluentValidation.AspNetCore;
 using Dietownik.ApplicationServices.API.Validators;
 using Microsoft.AspNetCore.Authentication;
-using MagazynEdu.Authentication;
+using Dietownik.Authentication;
+using Dietownik.ApplicationServices.Components;
 
 namespace Dietownik
 {
@@ -38,6 +39,18 @@ namespace Dietownik
         {
             // Dodane własne:
 
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+            });
+
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
@@ -51,6 +64,7 @@ namespace Dietownik
 
             services.AddTransient<IQueryExecutor, QueryExecutor>();
             services.AddTransient<ICommandExecutor, CommandExecutor>();
+            services.AddTransient<IPasswordHasher, PasswordHasher>();
 
             services.AddAutoMapper(typeof(ProductProfile).Assembly);
 

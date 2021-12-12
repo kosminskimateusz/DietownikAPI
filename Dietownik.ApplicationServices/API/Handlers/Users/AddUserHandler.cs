@@ -6,6 +6,7 @@ using AutoMapper;
 using Dietownik.ApplicationServices.API.Domain.Models;
 using Dietownik.ApplicationServices.API.Domain.Users;
 using Dietownik.ApplicationServices.API.ErrorHandling;
+using Dietownik.ApplicationServices.Components;
 using Dietownik.DataAccess;
 using Dietownik.DataAccess.CQRS;
 using Dietownik.DataAccess.CQRS.Commands.Users;
@@ -20,12 +21,14 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
         private readonly IMapper mapper;
         private readonly ICommandExecutor commandExecutor;
         private readonly IQueryExecutor queryExecutor;
+        private readonly IPasswordHasher passwordHasher;
 
-        public AddUserHandler(IMapper mapper, ICommandExecutor commandExecutor, IQueryExecutor queryExecutor)
+        public AddUserHandler(IMapper mapper, ICommandExecutor commandExecutor, IQueryExecutor queryExecutor, IPasswordHasher passwordHasher)
         {
             this.mapper = mapper;
             this.commandExecutor = commandExecutor;
             this.queryExecutor = queryExecutor;
+            this.passwordHasher = passwordHasher;
         }
         public async Task<AddUserResponse> Handle(AddUserRequest request, CancellationToken cancellationToken)
         {
@@ -43,7 +46,7 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
                 {
                     Error = new Domain.ErrorModel("This e-mail adress is already used.")
                 };
-
+            request.Password = passwordHasher.Hash(request.Password);
             var user = this.mapper.Map<EntityUser>(request);
             var command = new AddUserCommand()
             {
@@ -63,7 +66,8 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
             var users = await queryExecutor.Execute(query);
             var existingUser = users.Where(x => x.Email == email).FirstOrDefault();
 
-            return (existingUser != null) ? true : false;
+            // return (existingUser != null) ? true : false;
+            return (existingUser != null);
         }
 
         private async Task<bool> UsernameExistCheck(string username)
@@ -72,7 +76,8 @@ namespace Dietownik.ApplicationServices.API.Handlers.Users
             var users = await queryExecutor.Execute(query);
             var existingUser = users.Where(x => x.Username == username).FirstOrDefault();
 
-            return (existingUser != null) ? true : false;
+            // return (existingUser != null) ? true : false;
+            return (existingUser != null);
         }
     }
 }

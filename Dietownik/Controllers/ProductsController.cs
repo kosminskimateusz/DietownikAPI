@@ -44,7 +44,7 @@ namespace Dietownik.Controllers
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequest request)
         {
             if (!this.ModelState.IsValid)
-                this.logger.LogInformation($"Add Product Failure");
+                this.logger.LogError($"Add Product Failure");
             else
                 this.logger.LogInformation($"Add Product:  Name:\t{request.Name}");
 

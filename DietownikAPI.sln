@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.6.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dietownik", "Dietownik\Dietownik.csproj", "{DD4ABDF3-79B6-447A-97EC-ACBDB9A15855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik", "Dietownik\Dietownik.csproj", "{DD4ABDF3-79B6-447A-97EC-ACBDB9A15855}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dietownik.DataAccess", "Dietownik.DataAccess\Dietownik.DataAccess.csproj", "{86ECB214-47AD-4A39-AC5B-0E99FC77A555}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.DataAccess", "Dietownik.DataAccess\Dietownik.DataAccess.csproj", "{86ECB214-47AD-4A39-AC5B-0E99FC77A555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dietownik.ApplicationServices", "Dietownik.ApplicationServices\Dietownik.ApplicationServices.csproj", "{8F9DD4E0-17BD-414C-9656-51F29825CD7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.ApplicationServices", "Dietownik.ApplicationServices\Dietownik.ApplicationServices.csproj", "{8F9DD4E0-17BD-414C-9656-51F29825CD7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dietownik.Blazor", "Dietownik.Blazor\Dietownik.Blazor.csproj", "{C2AB4CAC-4AD7-4D00-967C-8762307656F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DD4ABDF3-79B6-447A-97EC-ACBDB9A15855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -58,5 +57,23 @@ Global
 		{8F9DD4E0-17BD-414C-9656-51F29825CD7B}.Release|x64.Build.0 = Release|Any CPU
 		{8F9DD4E0-17BD-414C-9656-51F29825CD7B}.Release|x86.ActiveCfg = Release|Any CPU
 		{8F9DD4E0-17BD-414C-9656-51F29825CD7B}.Release|x86.Build.0 = Release|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Debug|x64.Build.0 = Debug|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Debug|x86.Build.0 = Debug|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Release|x64.Build.0 = Release|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2AB4CAC-4AD7-4D00-967C-8762307656F1}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C63D682B-3091-4B9A-95DC-1541EC231C49}
 	EndGlobalSection
 EndGlobal

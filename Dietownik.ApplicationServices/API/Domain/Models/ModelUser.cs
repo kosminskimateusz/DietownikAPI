@@ -6,8 +6,9 @@ namespace Dietownik.ApplicationServices.API.Domain.Models
     {
         public string Username { get; set; }
         public string Email { get; set; }
-        public bool SpecialUser { get; set; }
+        public string Role { get; set; }
         // public int UserProfileId { get; set; }
         // public List<SavedRecipe> SavedRecipes { get; set; }
     }
+
 }

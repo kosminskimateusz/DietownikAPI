@@ -13,7 +13,7 @@ namespace Dietownik.DataAccess.Entities
 
         [Required]
         [NotNull]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Password { get; set; }
 
         [Required]
@@ -22,11 +22,17 @@ namespace Dietownik.DataAccess.Entities
         public string Email { get; set; }
 
         [Required]
-        public bool SpecialUser { get; set; }
+        public Role Role { get; set; }
 
         // public UserProfile UserProfile { get; set; }
 
         // public List<EntityMessage> Messages { get; set; }
         public List<EntitySavedRecipe> EntitySavedRecipes { get; set; }
+    }
+
+    public enum Role
+    {
+        User =0,
+        Admin = 1
     }
 }

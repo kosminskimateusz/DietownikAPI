@@ -32,7 +32,7 @@ namespace Dietownik.Controllers
                     .Where(x => x.Value.Errors.Any())
                     .Select(x => new { errors = x.Value.Errors }).ToList();
                 foreach (var err in errors)
-                    logger.LogInformation($"{err.errors[0].ErrorMessage}");
+                    logger.LogError($"{err.errors[0].ErrorMessage}");
 
                 return this.BadRequest(
                     this.ModelState
@@ -90,29 +90,43 @@ namespace Dietownik.Controllers
 
         private static HttpStatusCode GetHttpStatusCode(string errorType)
         {
-            switch (errorType)
+            //switch (errorType)
+            //{
+            //    case ErrorType.ValidationError:
+            //        return HttpStatusCode.BadRequest;
+            //    case ErrorType.NotFound:
+            //        return HttpStatusCode.NotFound;
+            //    case ErrorType.InternalServerError:
+            //        return HttpStatusCode.InternalServerError;
+            //    case ErrorType.NotAuthenticated:
+            //        return HttpStatusCode.NetworkAuthenticationRequired;
+            //    case ErrorType.Unauthorized:
+            //        return HttpStatusCode.Unauthorized;
+            //    case ErrorType.UnsupportedMediaType:
+            //        return HttpStatusCode.UnsupportedMediaType;
+            //    case ErrorType.UnsupportedMethod:
+            //        return HttpStatusCode.MethodNotAllowed;
+            //    case ErrorType.RequestTooLarge:
+            //        return HttpStatusCode.RequestEntityTooLarge;
+            //    case ErrorType.TooManyRequests:
+            //        return HttpStatusCode.TooManyRequests;
+            //    default:
+            //        return HttpStatusCode.BadRequest;
+            //}
+
+            return errorType switch
             {
-                case ErrorType.ValidationError:
-                    return HttpStatusCode.BadRequest;
-                case ErrorType.NotFound:
-                    return HttpStatusCode.NotFound;
-                case ErrorType.InternalServerError:
-                    return HttpStatusCode.InternalServerError;
-                case ErrorType.NotAuthenticated:
-                    return HttpStatusCode.NetworkAuthenticationRequired;
-                case ErrorType.Unauthorized:
-                    return HttpStatusCode.Unauthorized;
-                case ErrorType.UnsupportedMediaType:
-                    return HttpStatusCode.UnsupportedMediaType;
-                case ErrorType.UnsupportedMethod:
-                    return HttpStatusCode.MethodNotAllowed;
-                case ErrorType.RequestTooLarge:
-                    return HttpStatusCode.RequestEntityTooLarge;
-                case ErrorType.TooManyRequests:
-                    return HttpStatusCode.TooManyRequests;
-                default:
-                    return HttpStatusCode.BadRequest;
-            }
+                ErrorType.ValidationError => HttpStatusCode.BadRequest,
+                ErrorType.NotFound => HttpStatusCode.NotFound,
+                ErrorType.InternalServerError => HttpStatusCode.InternalServerError,
+                ErrorType.NotAuthenticated => HttpStatusCode.NetworkAuthenticationRequired,
+                ErrorType.Unauthorized => HttpStatusCode.Unauthorized,
+                ErrorType.UnsupportedMediaType => HttpStatusCode.UnsupportedMediaType,
+                ErrorType.UnsupportedMethod => HttpStatusCode.MethodNotAllowed,
+                ErrorType.RequestTooLarge => HttpStatusCode.RequestEntityTooLarge,
+                ErrorType.TooManyRequests => HttpStatusCode.TooManyRequests,
+                _ => HttpStatusCode.BadRequest,
+            };
         }
     }
 }

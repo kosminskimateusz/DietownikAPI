@@ -1,16 +1,41 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "dd4abdf3-79b6-447a-97ec-acbdb9a15855": {
-      "ProjectGuid": "dd4abdf3-79b6-447a-97ec-acbdb9a15855",
-      "DisplayName": "Dietownik",
-      "ColorIndex": 0
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Różne pliki",
+      "ColorIndex": -1
     },
     "86ecb214-47ad-4a39-ac5b-0e99fc77a555": {
       "ProjectGuid": "86ecb214-47ad-4a39-ac5b-0e99fc77a555",
       "DisplayName": "Dietownik.DataAccess",
+      "ColorIndex": 0
+    },
+    "dd4abdf3-79b6-447a-97ec-acbdb9a15855": {
+      "ProjectGuid": "dd4abdf3-79b6-447a-97ec-acbdb9a15855",
+      "DisplayName": "Dietownik",
       "ColorIndex": 1
+    },
+    "8f9dd4e0-17bd-414c-9656-51f29825cd7b": {
+      "ProjectGuid": "8f9dd4e0-17bd-414c-9656-51f29825cd7b",
+      "DisplayName": "Dietownik.ApplicationServices",
+      "ColorIndex": 2
+    },
+    "8dd0e595-b61e-4bcd-9678-9a78b7c99b2d": {
+      "ProjectGuid": "8dd0e595-b61e-4bcd-9678-9a78b7c99b2d",
+      "DisplayName": "Dietownik.Blazor.Server",
+      "ColorIndex": 3
+    },
+    "ea7ca6ac-d8e6-46a9-b523-e80e9e8388cd": {
+      "ProjectGuid": "ea7ca6ac-d8e6-46a9-b523-e80e9e8388cd",
+      "DisplayName": "Dietownik.Blazor.Client",
+      "ColorIndex": 4
+    },
+    "c2ab4cac-4ad7-4d00-967c-8762307656f1": {
+      "ProjectGuid": "c2ab4cac-4ad7-4d00-967c-8762307656f1",
+      "DisplayName": "Dietownik.Blazor",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 2
+  "NextColorIndex": 6
 }

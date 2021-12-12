@@ -1,4 +1,4 @@
-namespace MagazynEdu.Authentication
+namespace Dietownik.Authentication
 {
     using System;
     using System.Net.Http.Headers;
@@ -6,6 +6,7 @@ namespace MagazynEdu.Authentication
     using System.Text;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
+    using Dietownik.ApplicationServices.Components;
     using Dietownik.DataAccess;
     using Dietownik.DataAccess.CQRS;
     using Dietownik.DataAccess.CQRS.Queries;
@@ -20,16 +21,19 @@ namespace MagazynEdu.Authentication
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly IQueryExecutor queryExecutor;
+        private readonly IPasswordHasher passwordHasher;
 
         public BasicAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
             UrlEncoder encoder,
             ISystemClock clock,
-            IQueryExecutor queryExecutor)
+            IQueryExecutor queryExecutor,
+            IPasswordHasher passwordHasher)
             : base(options, logger, encoder, clock)
         {
             this.queryExecutor = queryExecutor;
+            this.passwordHasher = passwordHasher;
         }
 
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -46,7 +50,7 @@ namespace MagazynEdu.Authentication
                 return AuthenticateResult.Fail("Missing Authorization Header");
             }
 
-            EntityUser user = null;
+            EntityUser user;
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);
@@ -60,10 +64,17 @@ namespace MagazynEdu.Authentication
                 };
                 user = await this.queryExecutor.Execute(query);
 
+                var pass = passwordHasher.Hash(credentials[1]);
+
+
                 // TODO: HASH!
-                if (user == null || user.Password != password)
+                if (user == null)
                 {
                     return AuthenticateResult.Fail("Invalid Authorization Header");
+                }
+                if (!passwordHasher.HashCheck(user.Password, password))
+                {
+                    return AuthenticateResult.Fail("Invalid Password");
                 }
             }
             catch
@@ -75,7 +86,7 @@ namespace MagazynEdu.Authentication
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, user.SpecialUser.ToString()),
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
             };
             var identity = new ClaimsIdentity(claims, Scheme.Name);
             var principal = new ClaimsPrincipal(identity);
