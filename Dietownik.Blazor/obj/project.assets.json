@@ -1547,24 +1547,27 @@
   },
   "packageFolders": {
     "C:\\Users\\kosmi\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kosmi\\source\\repos\\kosminskimateusz\\DietownikAPI\\Dietownik.Blazor\\Dietownik.Blazor.csproj",
+      "projectUniqueName": "C:\\Users\\kosmi\\Documents\\.NET\\DietownikAPI\\Dietownik.Blazor\\Dietownik.Blazor.csproj",
       "projectName": "Dietownik.Blazor",
-      "projectPath": "C:\\Users\\kosmi\\source\\repos\\kosminskimateusz\\DietownikAPI\\Dietownik.Blazor\\Dietownik.Blazor.csproj",
+      "projectPath": "C:\\Users\\kosmi\\Documents\\.NET\\DietownikAPI\\Dietownik.Blazor\\Dietownik.Blazor.csproj",
       "packagesPath": "C:\\Users\\kosmi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kosmi\\source\\repos\\kosminskimateusz\\DietownikAPI\\Dietownik.Blazor\\obj\\",
+      "outputPath": "C:\\Users\\kosmi\\Documents\\.NET\\DietownikAPI\\Dietownik.Blazor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
         "C:\\Users\\kosmi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ShhRCnWFbqkqX/C7uxhgj53JXiMI5VFGTwyHXg7xZnN2IzZIsfJNxbZgrVku7JW1aWs+8PrEtSuFFn4j7k4QYQ==",
+  "dgSpecHash": "V1ciJI8E0f/kANNMHbAUxZ0G6Wr7odaz4lXSGeDnv08Syd51lnSvSlhGGX8UpAk8uEZ9oISgqynCj6M0aX3BGw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kosmi\\source\\repos\\kosminskimateusz\\DietownikAPI\\Dietownik.Blazor\\Dietownik.Blazor.csproj",
+  "projectFilePath": "C:\\Users\\kosmi\\Documents\\.NET\\DietownikAPI\\Dietownik.Blazor\\Dietownik.Blazor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kosmi\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.0\\microsoft.aspnetcore.authorization.6.0.0.nupkg.sha512",
     "C:\\Users\\kosmi\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.0\\microsoft.aspnetcore.components.6.0.0.nupkg.sha512",

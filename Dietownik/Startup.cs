@@ -39,8 +39,16 @@ namespace Dietownik
         {
             // Dodane własne:
 
-            services.AddCors(options =>
-            {
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(name: "AllowBlazor",
+            //       builder =>
+            //       {
+            //           builder.WithOrigins("https://localhost:44352/",
+            //               "http://localhost:35207");
+            //       });
+            //});
+            services.AddCors(options => {
                 options.AddDefaultPolicy(
                     builder =>
                     {
@@ -49,7 +57,7 @@ namespace Dietownik
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });
-            });
+                });
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -98,6 +106,8 @@ namespace Dietownik
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
