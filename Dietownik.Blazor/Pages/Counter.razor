@@ -5,35 +5,14 @@
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
+
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-
-@*<span @ref="demo">Super</span>
-<button class="btn btn-dark" @onclick="ChangeText">Change text</button>*@
-
-@*<h2 @ref="title">Hello, world!</h2>*@
-
-Welcome to your new app.
-
-<SurveyPrompt Parent="@this" Title="How is Blazor working for you?" />
 
 @code {
     private int currentCount = 0;
 
-    [Parameter]
-    public int IncrementValue { get; set; } = 1;
-
     private void IncrementCount()
     {
-        currentCount += IncrementValue;
+        currentCount++;
     }
-
-    //private ElementReference demo;
-    //public async Task ChangeText()
-    //{
-        
-    //}
-
 }
-
-

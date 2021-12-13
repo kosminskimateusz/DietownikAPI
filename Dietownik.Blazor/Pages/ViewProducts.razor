@@ -1,0 +1,30 @@
+﻿@page "/viewproducts"
+@using Dietownik.Blazor.Model
+
+<h3>Products</h3>
+<div class="col col-sm" style="border-color:black; border-radius:10px">
+    <label>Product</label>
+    <button class="btn-outline-primary" @onclick="GetProducts">Get Products</button>
+</div>
+<h4>@strFeedback</h4>
+<h4>@testProduct</h4>
+@code {
+    Product ProductInfo = new Product();
+    string strFeedback = "";
+    string testProduct;
+
+    private async void GetProducts()
+    {
+        try
+        {
+            HttpClient clnt = new HttpClient();
+            ProductInfo = await clnt.GetFromJsonAsync<Product>("https://localhost:44371/api/products/1");
+            testProduct = ProductInfo.Data.Name;
+        }
+        catch (Exception ex)
+        {
+            strFeedback = ex.Message;
+            StateHasChanged();
+        }
+    }
+}

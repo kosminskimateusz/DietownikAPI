@@ -1,8 +1,6 @@
 {
   "cacheBootResources": true,
-  "config": [
-    "appsettings.json"
-  ],
+  "config": [ ],
   "debugBuild": true,
   "entryAssembly": "Dietownik.Blazor",
   "icuDataMode": 0,
@@ -198,13 +196,13 @@
       "mscorlib.dll": "sha256-tlYWYAypJO+6gsCjV734iAJn8xcZYhUjM7vgxDLJluE=",
       "netstandard.dll": "sha256-E48Na3ZQWKExltzTwgP0Ao+UqWhiVYeerXfUL9lEc+c=",
       "System.Private.CoreLib.dll": "sha256-J85Z1XnwapHef31sR58JFq+0HrFP5BjOoObPKjdFHCw=",
-      "Dietownik.Blazor.dll": "sha256-82pOiGVEWryHdHlQwm3dpMzoS4337qKpVcMWXHQXh70="
+      "Dietownik.Blazor.dll": "sha256-iHACzEoDROBRegyViv\/mJER7+2bYMZSpZpgS405Fjq8="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
-      "Dietownik.Blazor.pdb": "sha256-pbYbjqi3qVpdAyZTtw3Z\/K4NiWKehrDJUxmoCUTwVIQ="
+      "Dietownik.Blazor.pdb": "sha256-xRVJnbA0WxbQ9esiE8vQLNcseienIJglFlTrg40m4is="
     },
     "runtime": {
       "dotnet.6.0.0.b5xkq1m3cb.js": "sha256-LOq52qjRa3+zt3w4UL10rS3UdwHxVQxW0JAsMPO9QAM=",
