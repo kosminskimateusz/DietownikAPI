@@ -5,7 +5,9 @@
 /Dietownik.DataAccess/bin/
 /Dietownik.DataAccess/obj/
 /Dietownik.DataAccess/Migrations/
+Dietownik.DataAccess/Migrations/RecipeStorageContextModelSnapshot.cs
 Dietownik.ApplicationServices/obj/
 Dietownik.ApplicationServices/bin/
-Dietownik.DataAccess/Migrations/RecipeStorageContextModelSnapshot.cs
 Dietownik/tmp/
+Dietownik.Blazor/bin/
+Dietownik.Blazor/obj/
