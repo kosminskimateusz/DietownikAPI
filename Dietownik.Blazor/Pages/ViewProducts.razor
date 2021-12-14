@@ -1,5 +1,5 @@
 ﻿@page "/viewproducts"
-@using Dietownik.Blazor.Model
+@using Dietownik.Blazor.Models
 
 <h3>Products</h3>
 <div class="col col-sm" style="border-color:black; border-radius:10px">
@@ -7,11 +7,15 @@
     <button class="btn-outline-primary" @onclick="GetProducts">Get Products</button>
 </div>
 <h4>@strFeedback</h4>
-<h4>@testProduct</h4>
+<h4>@if (id != 0) @id</h4>
+<h4>@if (id != 0)@productName</h4>
+<h4>@if (id != 0)@kcal</h4>
 @code {
     Product ProductInfo = new Product();
     string strFeedback = "";
-    string testProduct;
+    string productName;
+    decimal kcal;
+    int id;
 
     private async void GetProducts()
     {
@@ -19,7 +23,10 @@
         {
             HttpClient clnt = new HttpClient();
             ProductInfo = await clnt.GetFromJsonAsync<Product>("https://localhost:44371/api/products/1");
-            testProduct = ProductInfo.Data.Name;
+            productName = ProductInfo.Name;
+            kcal = ProductInfo.Kcal;
+            id = ProductInfo.Id;
+            StateHasChanged();
         }
         catch (Exception ex)
         {

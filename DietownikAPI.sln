@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.DataAccess", "Die
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.ApplicationServices", "Dietownik.ApplicationServices\Dietownik.ApplicationServices.csproj", "{8F9DD4E0-17BD-414C-9656-51F29825CD7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dietownik.Blazor", "Dietownik.Blazor\Dietownik.Blazor.csproj", "{7D8C5338-3CFE-41E7-B112-C9BD17356E4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.Blazor", "Dietownik.Blazor\Dietownik.Blazor.csproj", "{7D8C5338-3CFE-41E7-B112-C9BD17356E4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

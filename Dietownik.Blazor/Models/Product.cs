@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Dietownik.Blazor.Model
+namespace Dietownik.Blazor.Models
 {
-    public class Data
-    {
+    public class Product
+    { 
         public int Id { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -11,8 +11,6 @@ namespace Dietownik.Blazor.Model
         public decimal Fats { get; set; }
         public decimal Carbs { get; set; }
         public decimal Proteins { get; set; }
-
     }
 }
 
-// {"data":[{"name":"Papryka","kcal":10.0,"fats":0.0,"carbs":8.0,"proteins":0.0,"id":1}],"error":null}
