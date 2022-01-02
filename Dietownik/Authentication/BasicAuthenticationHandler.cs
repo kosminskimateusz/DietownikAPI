@@ -64,7 +64,7 @@ namespace Dietownik.Authentication
                 };
                 user = await this.queryExecutor.Execute(query);
 
-                var pass = passwordHasher.Hash(credentials[1]);
+                var pass = passwordHasher.Hash(password);
 
 
                 // TODO: HASH!

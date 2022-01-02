@@ -1,5 +1,6 @@
 .vscode/
 .vs/
+.vs/DietownikAPI/
 /Dietownik/bin/
 /Dietownik/obj/
 /Dietownik.DataAccess/bin/
@@ -9,5 +10,5 @@ Dietownik.DataAccess/Migrations/RecipeStorageContextModelSnapshot.cs
 Dietownik.ApplicationServices/obj/
 Dietownik.ApplicationServices/bin/
 Dietownik/tmp/
-Dietownik.Blazor/bin/
-Dietownik.Blazor/obj/
+/Dietownik.Tests/bin/
+/Dietownik.Tests/obj/

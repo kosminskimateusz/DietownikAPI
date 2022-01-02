@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.DataAccess", "Die
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dietownik.ApplicationServices", "Dietownik.ApplicationServices\Dietownik.ApplicationServices.csproj", "{8F9DD4E0-17BD-414C-9656-51F29825CD7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dietownik.Tests", "Dietownik.Tests\Dietownik.Tests.csproj", "{233D0169-0214-4E22-919E-5DB0CE6B4ABA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{8F9DD4E0-17BD-414C-9656-51F29825CD7B}.Release|x64.Build.0 = Release|Any CPU
 		{8F9DD4E0-17BD-414C-9656-51F29825CD7B}.Release|x86.ActiveCfg = Release|Any CPU
 		{8F9DD4E0-17BD-414C-9656-51F29825CD7B}.Release|x86.Build.0 = Release|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Debug|x64.Build.0 = Debug|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Debug|x86.Build.0 = Debug|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Release|x64.ActiveCfg = Release|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Release|x64.Build.0 = Release|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Release|x86.ActiveCfg = Release|Any CPU
+		{233D0169-0214-4E22-919E-5DB0CE6B4ABA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

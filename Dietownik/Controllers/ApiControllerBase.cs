@@ -39,7 +39,7 @@ namespace Dietownik.Controllers
                     .Where(x => x.Value.Errors.Any())
                     .Select(x => new { property = x.Key, errors = x.Value.Errors }));
             }
-
+            
             var userName = this.User.FindFirstValue(ClaimTypes.Name);
 
             var response = await this.mediator.Send(request);
@@ -49,6 +49,8 @@ namespace Dietownik.Controllers
                 logger.LogInformation($"{response.Error.Error}");
                 return this.ErrorResponse(response.Error);
             }
+            Console.WriteLine(userName);
+            Console.WriteLine(this.User.FindFirstValue(ClaimTypes.Email));
 
             return this.Ok(response);
         }

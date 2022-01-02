@@ -40,7 +40,12 @@
       "ProjectGuid": "7d8c5338-3cfe-41e7-b112-c9bd17356e4c",
       "DisplayName": "Dietownik.Blazor",
       "ColorIndex": 6
+    },
+    "233d0169-0214-4e22-919e-5db0ce6b4aba": {
+      "ProjectGuid": "233d0169-0214-4e22-919e-5db0ce6b4aba",
+      "DisplayName": "Dietownik.Tests",
+      "ColorIndex": 7
     }
   },
-  "NextColorIndex": 7
+  "NextColorIndex": 8
 }

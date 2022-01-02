@@ -22,6 +22,7 @@ using Dietownik.ApplicationServices.API.Validators;
 using Microsoft.AspNetCore.Authentication;
 using Dietownik.Authentication;
 using Dietownik.ApplicationServices.Components;
+using Microsoft.Extensions.Options;
 
 namespace Dietownik
 {
