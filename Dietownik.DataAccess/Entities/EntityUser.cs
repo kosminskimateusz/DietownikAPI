@@ -22,7 +22,7 @@ namespace Dietownik.DataAccess.Entities
         public string Email { get; set; }
 
         [Required]
-        public Role Role { get; set; }
+        public bool Role { get; set; }
 
         // public UserProfile UserProfile { get; set; }
 
